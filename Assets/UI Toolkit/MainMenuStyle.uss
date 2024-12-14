@@ -1,0 +1,40 @@
+.mainMenuButton {
+    width: 450px;
+    height: 120px;
+    margin-top: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    font-size: 40px;
+    -unity-font-style: bold;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0);
+    color: rgba(255, 255, 255, 0.96);
+}
+
+.settingButton {
+    background-color: rgb(229, 75, 70);
+}
+
+.settingButton:hover {
+    background-color: rgb(167, 55, 51);
+}
+
+.achivementButton {
+    background-color: rgb(70, 88, 188);
+}
+
+.achivementButton:hover {
+    background-color: rgb(43, 59, 148);
+}
+
+.playButton {
+    background-color: rgb(63, 175, 64);
+}
+
+.playButton:hover {
+    background-color: rgb(39, 133, 40);
+}
