@@ -1,17 +1,34 @@
-// using UnityEngine;
+using UnityEngine;
 
-// public class RedPill : BasePill
-// {
-//     [SerializeField] private float healAmount = 25f;
+public class RedPill : MonoBehaviour
+{
+    [SerializeField] private float healthBoost = 25f;
+    [SerializeField] private float duration = 5f;
 
-//     protected override void ActivateEffect()
-//     {
-//         base.ActivateEffect();
+    private void OnTriggerEnter(Collider other)
+    {
+        FirstPersonController player = other.GetComponent<FirstPersonController>();
+        if (player != null)
+        {
+            // Increase sprint duration temporarily
+            float originalSprintDuration = player.sprintDuration;
+            player.sprintDuration += healthBoost;
+
+            // Reset after duration
+            StartCoroutine(ResetHealthAfterDelay(player, originalSprintDuration));
+
+            // Destroy the pill
+            Destroy(gameObject);
+        }
+    }
+
+    private System.Collections.IEnumerator ResetHealthAfterDelay(FirstPersonController player, float originalSprintDuration)
+    {
+        yield return new WaitForSeconds(duration);
         
-//         VillainHealth villainHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<VillainHealth>();
-//         if (villainHealth != null)
-//         {
-//             villainHealth.TakeDamage();
-//         }
-//     }
-// } 
+        if (player != null)
+        {
+            player.sprintDuration = originalSprintDuration;
+        }
+    }
+} 
