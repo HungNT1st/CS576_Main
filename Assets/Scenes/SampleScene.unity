@@ -535,9 +535,9 @@ GameObject:
   - component: {fileID: 185597324}
   - component: {fileID: 185597327}
   - component: {fileID: 185597326}
-  - component: {fileID: 185597325}
+  - component: {fileID: 185597328}
   m_Layer: 0
-  m_Name: Particle System
+  m_Name: Fire Extinguisher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -558,19 +558,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1006447397}
   m_LocalEulerAnglesHint: {x: -28.549, y: -0.673, z: 5.081}
---- !u!114 &185597325
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 185597323}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9159cda2d1446e44b2e15147e5f2b4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  particleSystem: {fileID: 185597327}
 --- !u!199 &185597326
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -5368,6 +5355,24 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!114 &185597328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 185597323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c98bef2dae75eba4b89660b061639aca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waterAmount: 1
+  waterRange: 5
+  fireLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  waterSprayEffect: {fileID: 185597327}
 --- !u!1001 &191743660
 PrefabInstance:
   m_ObjectHideFlags: 0
