@@ -6726,7 +6726,7 @@ MonoBehaviour:
   attackRange: 2
   moveSpeed: 3
   maxHealth: 5
-  attackCooldown: 0.1
+  attackCooldown: 1
 --- !u!114 &1033073722
 MonoBehaviour:
   m_ObjectHideFlags: 0
