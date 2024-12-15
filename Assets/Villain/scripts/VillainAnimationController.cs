@@ -20,7 +20,7 @@ public class VillainAnimationController : MonoBehaviour
     {
         if (curState != state)
         {
-            anim.CrossFade(state, 0.15f, 0);
+            anim.CrossFade(state, 0.01f, 0);
             curState = state;
         }
     }
