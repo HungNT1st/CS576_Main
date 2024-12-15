@@ -1,18 +1,19 @@
 using UnityEngine;
+using System.Collections;
 
 public class FireManager : MonoBehaviour
 {
     [Header("Fire Settings")]
     [SerializeField] private ParticleSystem fireParticleSystem;
     [SerializeField] private float waterRequiredToExtinguish = 5f;
-    [SerializeField] private float extinguishTime = 2f;
+    [SerializeField] private float extinguishDelay = 3f;
     
     [Header("Effects")]
     [SerializeField] private ParticleSystem steamEffect;
     
     private float currentWaterAmount = 0f;
+    private bool isExtinguishing = false;
     private bool isExtinguished = false;
-
     private FirePillReward pillReward;
 
     private void Start()
@@ -27,7 +28,7 @@ public class FireManager : MonoBehaviour
 
     public void ApplyWater(float amount)
     {
-        if (isExtinguished) return;
+        if (isExtinguished || isExtinguishing) return;
 
         currentWaterAmount += amount;
         
@@ -37,10 +38,30 @@ public class FireManager : MonoBehaviour
             steamEffect.Play();
         }
 
-        if (currentWaterAmount >= waterRequiredToExtinguish)
+        if (currentWaterAmount >= waterRequiredToExtinguish && !isExtinguishing)
         {
-            ExtinguishFire();
+            StartCoroutine(ExtinguishFireRoutine());
         }
+    }
+
+    private IEnumerator ExtinguishFireRoutine()
+    {
+        isExtinguishing = true;
+        
+        // Reduce fire particle effect gradually
+        var emission = fireParticleSystem.emission;
+        float startRate = emission.rateOverTime.constant;
+        
+        float elapsedTime = 0f;
+        while (elapsedTime < extinguishDelay)
+        {
+            float t = elapsedTime / extinguishDelay;
+            emission.rateOverTime = startRate * (1f - t);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        
+        ExtinguishFire();
     }
 
     private void ExtinguishFire()
@@ -62,6 +83,6 @@ public class FireManager : MonoBehaviour
         }
 
         // Cleanup
-        Destroy(gameObject, extinguishTime);
+        Destroy(gameObject, 1f);
     }
 } 
