@@ -1,3 +1,4 @@
+using System.Collections;
 using DG.Tweening;
 using UnityEngine;
 
@@ -23,6 +24,7 @@ public class TreePlantingHandler : MonoBehaviour
         tree.DOMoveY(spawnPos.y + TREEHEIGHT, 5f);
 
         AddTreeToTerrain(spawnPos);
+        GameManager.Instance.HealWorld(20);
     }
 
     private void AddTreeToTerrain(Vector3 position)
@@ -52,7 +54,10 @@ public class TreePlantingHandler : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.T))
         {
-            SpawnTreeAtPlayerPosition();
+            HUD.Instance.SetSmallTaskLoading("Planting", 5).onComplete += SpawnTreeAtPlayerPosition;
+        }
+        if (Input.GetKeyUp(KeyCode.T)) {
+            HUD.Instance.StopSmallTaskLoading();
         }
     }
 }
