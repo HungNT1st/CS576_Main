@@ -27,6 +27,7 @@ public class VillainBehavior : MonoBehaviour
     public void Initialize(Transform initialTree)
     {
         currentTargetTree = initialTree;
+        FaceTarget();
         StartCoroutine(AIRoutine());
     }
 
@@ -62,11 +63,10 @@ public class VillainBehavior : MonoBehaviour
         transform.position += direction * moveSpeed * Time.deltaTime;
         transform.rotation = Quaternion.LookRotation(direction);
         
-        // Update animation
+        // Update animation to running state
         if (animController != null)
         {
-            // Assuming "Running" is the animation state name
-            animController.CrossFade("Running");
+            animController.SetState(VillainAnimationController.States.Running);
         }
     }
 
@@ -74,31 +74,52 @@ public class VillainBehavior : MonoBehaviour
     {
         isAttacking = true;
         
-        // Play attack animation
-        if (animController != null)
+        while (currentTargetTree != null && !isDead)
         {
-            animController.CrossFade("AttackHor");
-            yield return new WaitForSeconds(animController.GetClipLength("AttackHor"));
-        }
-
-        // float damage = Random.Range(1f, 1.7f);
-        // currentTreeHealth -= damage;
-        currentTreeHealth--;
-        if (currentTreeHealth <= 0 && currentTargetTree != null)
-        {
-            TreeReference treeRef = currentTargetTree.GetComponent<TreeReference>();
-            if (treeRef != null)
+            // Face the tree while attacking
+            FaceTarget();
+            
+            // Set attack state
+            if (animController != null)
             {
-                treeRef.RemoveTree();
-                if (gameManager != null)
-                {
-                    gameManager.DamageWorld(treeDmg);  
-                }
+                animController.SetState(VillainAnimationController.States.Attack);
             }
-            currentTargetTree = null;
-        }
 
-        // yield return new WaitForSeconds(attackCooldown);
+            // Wait for attack animation to complete
+            yield return new WaitForSeconds(animController.GetClipLength("AttackHor"));
+
+            // Deal damage
+            currentTreeHealth--;
+            if (currentTreeHealth <= 0 && currentTargetTree != null)
+            {
+                TreeReference treeRef = currentTargetTree.GetComponent<TreeReference>();
+                if (treeRef != null)
+                {
+                    treeRef.RemoveTree();
+                    if (gameManager != null)
+                    {
+                        gameManager.DamageWorld(treeDmg);  
+                    }
+                }
+                currentTargetTree = null;
+                // Return to idle state when target is destroyed
+                if (animController != null)
+                {
+                    animController.SetState(VillainAnimationController.States.Idle);
+                }
+                break;
+            }
+
+            // Brief pause between attacks
+            yield return new WaitForSeconds(attackCooldown);
+            
+            // Reset to attack state for next attack
+            if (animController != null && currentTargetTree != null)
+            {
+                animController.SetState(VillainAnimationController.States.Attack);
+            }
+        }
+        
         isAttacking = false;
     }
 
@@ -139,7 +160,7 @@ public class VillainBehavior : MonoBehaviour
         isDead = true;
         if (animController != null)
         {
-            animController.CrossFade("Death");
+            animController.SetState(VillainAnimationController.States.Death);
         }
         StartCoroutine(DeathSequence());
     }
@@ -149,5 +170,14 @@ public class VillainBehavior : MonoBehaviour
         // Wait for death animation to play
         yield return new WaitForSeconds(1f);
         Destroy(gameObject);
+    }
+
+    private void FaceTarget()
+    {
+        if (currentTargetTree != null)
+        {
+            Vector3 direction = (currentTargetTree.position - transform.position).normalized;
+            transform.rotation = Quaternion.LookRotation(direction);
+        }
     }
 }

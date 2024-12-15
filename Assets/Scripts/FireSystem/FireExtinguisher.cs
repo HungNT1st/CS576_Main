@@ -14,13 +14,12 @@ public class FireExtinguisher : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(KeyCode.P))
         {
-            StartSpraying();
-        }
-        else if (Input.GetMouseButtonUp(0))
-        {
-            StopSpraying();
+            if (!isSpraying)
+                StartSpraying();
+            else
+                StopSpraying();
         }
         
         if (isSpraying)

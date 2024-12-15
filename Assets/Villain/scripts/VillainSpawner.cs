@@ -48,7 +48,6 @@ public class VillainSpawner : MonoBehaviour
         trees = terrain.terrainData.treeInstances;
         Debug.Log($"Found {trees.Length} trees on terrain");
 
-        // DO NOT SPAWN 2 TREE AT THE SAME PLACES. Ahh, I hate fixing this. 
         int i = 0;
         foreach (TreeInstance tree in trees.Where(t => t.prototypeIndex >= 0 && t.prototypeIndex <= 3))
         {
@@ -133,7 +132,11 @@ public class VillainSpawner : MonoBehaviour
             Vector3 spawnPosition = targetTree.transform.position + (Random.insideUnitSphere * minDistanceFromTrees);
             spawnPosition.y = GetTerrainHeight(spawnPosition);
 
-            GameObject villain = Instantiate(villainPrefab, spawnPosition, Quaternion.identity);
+            // Calculate initial rotation to face the tree
+            Vector3 directionToTree = (targetTree.transform.position - spawnPosition).normalized;
+            Quaternion initialRotation = Quaternion.LookRotation(directionToTree);
+
+            GameObject villain = Instantiate(villainPrefab, spawnPosition, initialRotation);
             VillainBehavior villainBehavior = villain.GetComponent<VillainBehavior>();
             if (villainBehavior != null)
             {
