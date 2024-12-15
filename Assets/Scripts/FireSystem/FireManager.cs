@@ -6,6 +6,8 @@ public class FireManager : MonoBehaviour
     [Header("Fire Settings")]
     [SerializeField] private ParticleSystem fireParticleSystem;
     [SerializeField] private float extinguishDelay = 3f;
+    [SerializeField] private float damageAmount = 10f;  // Amount of damage to deal to player
+    [SerializeField] private float damageInterval = 0.5f;  // How often to apply damage
     
     [Header("Effects")]
     [SerializeField] private ParticleSystem steamEffect;
@@ -13,6 +15,7 @@ public class FireManager : MonoBehaviour
     private bool isExtinguishing = false;
     private bool isExtinguished = false;
     private FirePillReward pillReward;
+    private float nextDamageTime = 0f;
 
     private void Start()
     {
@@ -22,6 +25,21 @@ public class FireManager : MonoBehaviour
         }
         
         pillReward = GetComponent<FirePillReward>();
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (isExtinguished) return;
+
+        if (other.CompareTag("Player") && Time.time >= nextDamageTime)
+        {
+            GameManager gameManager = FindObjectOfType<GameManager>();
+            if (gameManager != null)
+            {
+                gameManager.DamagePlayer(damageAmount);
+                nextDamageTime = Time.time + damageInterval;
+            }
+        }
     }
 
     public void ApplyWater(float amount)
