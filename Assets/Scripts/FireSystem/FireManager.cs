@@ -5,13 +5,11 @@ public class FireManager : MonoBehaviour
 {
     [Header("Fire Settings")]
     [SerializeField] private ParticleSystem fireParticleSystem;
-    [SerializeField] private float waterRequiredToExtinguish = 5f;
     [SerializeField] private float extinguishDelay = 3f;
     
     [Header("Effects")]
     [SerializeField] private ParticleSystem steamEffect;
     
-    private float currentWaterAmount = 0f;
     private bool isExtinguishing = false;
     private bool isExtinguished = false;
     private FirePillReward pillReward;
@@ -29,8 +27,6 @@ public class FireManager : MonoBehaviour
     public void ApplyWater(float amount)
     {
         if (isExtinguished || isExtinguishing) return;
-
-        currentWaterAmount += amount;
         
         // Play steam effect when water hits fire
         if (steamEffect != null && !steamEffect.isPlaying)
@@ -38,28 +34,16 @@ public class FireManager : MonoBehaviour
             steamEffect.Play();
         }
 
-        if (currentWaterAmount >= waterRequiredToExtinguish && !isExtinguishing)
-        {
-            StartCoroutine(ExtinguishFireRoutine());
-        }
+        // Start extinguishing immediately when hit by water
+        StartCoroutine(ExtinguishFireRoutine());
     }
 
     private IEnumerator ExtinguishFireRoutine()
     {
         isExtinguishing = true;
         
-        // Reduce fire particle effect gradually
-        var emission = fireParticleSystem.emission;
-        float startRate = emission.rateOverTime.constant;
-        
-        float elapsedTime = 0f;
-        while (elapsedTime < extinguishDelay)
-        {
-            float t = elapsedTime / extinguishDelay;
-            emission.rateOverTime = startRate * (1f - t);
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
+        // Wait for delay
+        yield return new WaitForSeconds(extinguishDelay);
         
         ExtinguishFire();
     }
@@ -71,9 +55,7 @@ public class FireManager : MonoBehaviour
         // Stop fire particles
         if (fireParticleSystem != null)
         {
-            var emission = fireParticleSystem.emission;
-            emission.enabled = false;
-            fireParticleSystem.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+            fireParticleSystem.Stop();
         }
 
         // Spawn reward
