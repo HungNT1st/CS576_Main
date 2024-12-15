@@ -5,9 +5,10 @@ public class FireManager : MonoBehaviour
 {
     [Header("Fire Settings")]
     [SerializeField] private ParticleSystem fireParticleSystem;
-    [SerializeField] private float extinguishDelay = 3f;
-    [SerializeField] private float damageAmount = 10f;  // Amount of damage to deal to player
-    [SerializeField] private float damageInterval = 0.5f;  // How often to apply damage
+    [SerializeField] private float extinguishDelay = 1f;
+    [SerializeField] private float damageAmount = 10f;
+    [SerializeField] private float damageInterval = 0.5f;
+    [SerializeField] private float waterNeeded = 3f;
     
     [Header("Effects")]
     [SerializeField] private ParticleSystem steamEffect;
@@ -16,15 +17,30 @@ public class FireManager : MonoBehaviour
     private bool isExtinguished = false;
     private FirePillReward pillReward;
     private float nextDamageTime = 0f;
+    private float waterAccumulated = 0f;
+    private GameManager gameManager;
 
     private void Start()
     {
+        // Get references
         if (fireParticleSystem == null)
         {
             fireParticleSystem = GetComponent<ParticleSystem>();
         }
         
         pillReward = GetComponent<FirePillReward>();
+        gameManager = FindObjectOfType<GameManager>();
+        
+        if (gameManager == null)
+        {
+            Debug.LogError("GameManager not found in the scene!");
+        }
+
+        // Make sure fire is playing
+        if (fireParticleSystem != null && !fireParticleSystem.isPlaying)
+        {
+            fireParticleSystem.Play();
+        }
     }
 
     private void OnTriggerStay(Collider other)
@@ -33,11 +49,11 @@ public class FireManager : MonoBehaviour
 
         if (other.CompareTag("Player") && Time.time >= nextDamageTime)
         {
-            GameManager gameManager = FindObjectOfType<GameManager>();
             if (gameManager != null)
             {
                 gameManager.DamagePlayer(damageAmount);
                 nextDamageTime = Time.time + damageInterval;
+                Debug.Log($"Player damaged for {damageAmount}");
             }
         }
     }
@@ -46,22 +62,42 @@ public class FireManager : MonoBehaviour
     {
         if (isExtinguished || isExtinguishing) return;
         
+        // Accumulate water
+        waterAccumulated += amount;
+        Debug.Log($"Water accumulated: {waterAccumulated}/{waterNeeded}");
+        
         // Play steam effect when water hits fire
         if (steamEffect != null && !steamEffect.isPlaying)
         {
             steamEffect.Play();
         }
 
-        // Start extinguishing immediately when hit by water
-        StartCoroutine(ExtinguishFireRoutine());
+        // Start extinguishing when enough water is accumulated
+        if (waterAccumulated >= waterNeeded)
+        {
+            StartCoroutine(ExtinguishFireRoutine());
+        }
     }
 
     private IEnumerator ExtinguishFireRoutine()
     {
         isExtinguishing = true;
         
-        // Wait for delay
-        yield return new WaitForSeconds(extinguishDelay);
+        // Gradually reduce particle emission
+        if (fireParticleSystem != null)
+        {
+            var emission = fireParticleSystem.emission;
+            var startRate = emission.rateOverTime.constant;
+            float elapsedTime = 0f;
+            
+            while (elapsedTime < extinguishDelay)
+            {
+                float newRate = Mathf.Lerp(startRate, 0f, elapsedTime / extinguishDelay);
+                emission.rateOverTime = newRate;
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+        }
         
         ExtinguishFire();
     }
@@ -76,13 +112,13 @@ public class FireManager : MonoBehaviour
             fireParticleSystem.Stop();
         }
 
-        // Spawn reward
+        // Spawn reward if available
         if (pillReward != null)
         {
             pillReward.SpawnReward();
         }
 
-        // Cleanup
-        Destroy(gameObject, 1f);
+        // Optionally destroy the fire object after a delay
+        Destroy(gameObject, 2f);
     }
 } 
