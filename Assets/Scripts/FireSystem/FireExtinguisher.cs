@@ -54,13 +54,16 @@ public class FireExtinguisher : MonoBehaviour
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
+        Debug.DrawRay(ray.origin, ray.direction * waterRange, Color.blue); // Debug visualization
 
         if (Physics.Raycast(ray, out hit, waterRange, fireLayer))
         {
+            Debug.Log($"Hit something on layer {hit.collider.gameObject.layer}"); // Debug log
             FireManager fire = hit.collider.GetComponent<FireManager>();
             if (fire != null)
             {
                 fire.ApplyWater(waterAmount * Time.deltaTime);
+                Debug.Log($"Applying water to fire: {waterAmount * Time.deltaTime}"); // Debug log
             }
         }
     }

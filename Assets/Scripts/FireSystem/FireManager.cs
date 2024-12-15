@@ -53,7 +53,7 @@ public class FireManager : MonoBehaviour
             {
                 gameManager.DamagePlayer(damageAmount);
                 nextDamageTime = Time.time + damageInterval;
-                Debug.Log($"Player damaged for {damageAmount}");
+                Debug.Log($"Fire damaged player for {damageAmount} damage");
             }
         }
     }
@@ -97,9 +97,9 @@ public class FireManager : MonoBehaviour
                 elapsedTime += Time.deltaTime;
                 yield return null;
             }
+            
+            ExtinguishFire();
         }
-        
-        ExtinguishFire();
     }
 
     private void ExtinguishFire()
@@ -110,6 +110,8 @@ public class FireManager : MonoBehaviour
         if (fireParticleSystem != null)
         {
             fireParticleSystem.Stop();
+            var emission = fireParticleSystem.emission;
+            emission.rateOverTime = 0;
         }
 
         // Spawn reward if available
@@ -118,7 +120,7 @@ public class FireManager : MonoBehaviour
             pillReward.SpawnReward();
         }
 
-        // Optionally destroy the fire object after a delay
+        // Destroy the fire object after a delay
         Destroy(gameObject, 2f);
     }
 } 
