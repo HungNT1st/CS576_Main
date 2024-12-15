@@ -6,11 +6,8 @@ public class VillainBehavior : MonoBehaviour
     [SerializeField] private float attackRange = 2f;
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private int maxHealth = 5;
-    [SerializeField] private float attackCooldown = 1f;
+    [SerializeField] private float attackCooldown = 0.1f;
     
-    private float baseSpeed;
-    private float speedMultiplier = 1f;
-
     private Transform currentTargetTree;
     private int currentTreeHealth = 10;
     private int health;
@@ -22,19 +19,6 @@ public class VillainBehavior : MonoBehaviour
     {
         health = maxHealth;
         animController = GetComponent<VillainAnimationController>();
-        baseSpeed = moveSpeed;
-    }
-
-    public void SetSpeedMultiplier(float multiplier)
-    {
-        speedMultiplier = multiplier;
-        moveSpeed = baseSpeed * speedMultiplier;
-    }
-
-    public void ResetSpeed()
-    {
-        speedMultiplier = 1f;
-        moveSpeed = baseSpeed;
     }
 
     public void Initialize(Transform initialTree)
@@ -79,7 +63,7 @@ public class VillainBehavior : MonoBehaviour
         if (animController != null)
         {
             // Assuming "Running" is the animation state name
-            animController.CrossFade("Running", 0.15f);
+            animController.CrossFade("Running");
         }
     }
 
@@ -90,14 +74,18 @@ public class VillainBehavior : MonoBehaviour
         // Play attack animation
         if (animController != null)
         {
-            animController.CrossFade("AttackHor", 0.15f);
+            animController.CrossFade("AttackHor");
         }
 
         // Damage tree
         currentTreeHealth--;
         if (currentTreeHealth <= 0 && currentTargetTree != null)
         {
-            Destroy(currentTargetTree.gameObject);
+            TreeReference treeRef = currentTargetTree.GetComponent<TreeReference>();
+            if (treeRef != null)
+            {
+                treeRef.RemoveTree();
+            }
             currentTargetTree = null;
         }
 
@@ -142,7 +130,7 @@ public class VillainBehavior : MonoBehaviour
         isDead = true;
         if (animController != null)
         {
-            animController.CrossFade("Death", 0.15f);
+            animController.CrossFade("Death");
         }
         StartCoroutine(DeathSequence());
     }

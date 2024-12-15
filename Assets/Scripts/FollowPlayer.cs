@@ -39,13 +39,13 @@ public class NPCFollow : MonoBehaviour
             {
                 navMeshAgent.SetDestination(player.position);
                 animator.SetBool("IsMoving", true); 
-                Debug.Log("Animator IsMoving: " + animator.GetBool("IsMoving"));
+                // Debug.Log("Animator IsMoving: " + animator.GetBool("IsMoving"));
             }
             else
             {
                 navMeshAgent.ResetPath();
                 animator.SetBool("IsMoving", false); 
-                Debug.Log("Animator IsMoving: " + animator.GetBool("IsMoving"));
+                // Debug.Log("Animator IsMoving: " + animator.GetBool("IsMoving"));
             }
 
             Vector3 directionToPlayer = (player.position - transform.position).normalized;
