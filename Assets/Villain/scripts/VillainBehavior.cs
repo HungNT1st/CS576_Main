@@ -3,14 +3,14 @@ using System.Collections;
 
 public class VillainBehavior : MonoBehaviour
 {
+    public GameManager gameManager;
+    // Set tree dmg here  
+    public float treeDmg = 0.5f;
     [SerializeField] private float attackRange = 2f;
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private int maxHealth = 5;
-    [SerializeField] private float attackCooldown = 1f;
+    [SerializeField] private float attackCooldown = 0.1f;
     
-    private float baseSpeed;
-    private float speedMultiplier = 1f;
-
     private Transform currentTargetTree;
     private int currentTreeHealth = 10;
     private int health;
@@ -22,19 +22,6 @@ public class VillainBehavior : MonoBehaviour
     {
         health = maxHealth;
         animController = GetComponent<VillainAnimationController>();
-        baseSpeed = moveSpeed;
-    }
-
-    public void SetSpeedMultiplier(float multiplier)
-    {
-        speedMultiplier = multiplier;
-        moveSpeed = baseSpeed * speedMultiplier;
-    }
-
-    public void ResetSpeed()
-    {
-        speedMultiplier = 1f;
-        moveSpeed = baseSpeed;
     }
 
     public void Initialize(Transform initialTree)
@@ -79,7 +66,7 @@ public class VillainBehavior : MonoBehaviour
         if (animController != null)
         {
             // Assuming "Running" is the animation state name
-            animController.CrossFade("Running", 0.15f);
+            animController.CrossFade("Running");
         }
     }
 
@@ -90,18 +77,28 @@ public class VillainBehavior : MonoBehaviour
         // Play attack animation
         if (animController != null)
         {
-            animController.CrossFade("AttackHor", 0.15f);
+            animController.CrossFade("AttackHor");
+            yield return new WaitForSeconds(animController.GetClipLength("AttackHor"));
         }
 
-        // Damage tree
+        // float damage = Random.Range(1f, 1.7f);
+        // currentTreeHealth -= damage;
         currentTreeHealth--;
         if (currentTreeHealth <= 0 && currentTargetTree != null)
         {
-            Destroy(currentTargetTree.gameObject);
+            TreeReference treeRef = currentTargetTree.GetComponent<TreeReference>();
+            if (treeRef != null)
+            {
+                treeRef.RemoveTree();
+                if (gameManager != null)
+                {
+                    gameManager.DamageWorld(treeDmg);  
+                }
+            }
             currentTargetTree = null;
         }
 
-        yield return new WaitForSeconds(attackCooldown);
+        // yield return new WaitForSeconds(attackCooldown);
         isAttacking = false;
     }
 
@@ -142,7 +139,7 @@ public class VillainBehavior : MonoBehaviour
         isDead = true;
         if (animController != null)
         {
-            animController.CrossFade("Death", 0.15f);
+            animController.CrossFade("Death");
         }
         StartCoroutine(DeathSequence());
     }

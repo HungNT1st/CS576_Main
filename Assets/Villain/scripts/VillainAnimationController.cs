@@ -16,12 +16,34 @@ public class VillainAnimationController : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
-    public void CrossFade(string state, float transitionDuration)
+    public void CrossFade(string state)
     {
         if (curState != state)
         {
-            anim.CrossFade(state, transitionDuration, 0);
+            anim.CrossFade(state, 0.15f, 0);
             curState = state;
         }
+    }
+
+    public float GetClipLength(string clipName)
+
+    {
+
+        Animator animator = GetComponent<Animator>();
+
+        AnimatorClipInfo[] clipInfo = animator.GetCurrentAnimatorClipInfo(0);
+
+        foreach (AnimatorClipInfo clip in clipInfo)
+
+        {
+
+            if (clip.clip.name == clipName)
+
+                return clip.clip.length;
+
+        }
+
+        return 1f; 
+
     }
 }

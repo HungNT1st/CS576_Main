@@ -38,3 +38,11 @@
 .playButton:hover {
     background-color: rgb(39, 133, 40);
 }
+
+.optionD {
+    background-color: rgb(213, 192, 61);
+}
+
+.optionD:hover {
+    background-color: rgb(152, 136, 35);
+}
