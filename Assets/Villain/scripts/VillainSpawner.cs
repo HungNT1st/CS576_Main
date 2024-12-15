@@ -48,6 +48,7 @@ public class VillainSpawner : MonoBehaviour
         trees = terrain.terrainData.treeInstances;
         Debug.Log($"Found {trees.Length} trees on terrain");
 
+        // DO NOT SPAWN 2 TREE AT THE SAME PLACES. Ahh, I hate fixing this. 
         int i = 0;
         foreach (TreeInstance tree in trees.Where(t => t.prototypeIndex >= 0 && t.prototypeIndex <= 3))
         {
@@ -55,12 +56,20 @@ public class VillainSpawner : MonoBehaviour
             GameObject treeCollider = Instantiate(treeColliderPrefab[tree.prototypeIndex], treePosition, Quaternion.identity);
             treeCollider.tag = "Tree";
 
+            CapsuleCollider capsuleCollider = treeCollider.AddComponent<CapsuleCollider>();
+            capsuleCollider.height = 8f;
+            capsuleCollider.radius = 0.7f;
+            // capsuleCollider.isTrigger = true;
+
             TreeReference treeRef = treeCollider.AddComponent<TreeReference>();
             treeRef.TreeIndex = i;
 
             treeColliders.Add(treeCollider);
             i++;
         }
+        // Done fixing. 
+        terrain.treeDistance = 0f;
+
         // Create colliders for each tree
         // for (int i = 0; i < trees.Length; i++)
         // {
