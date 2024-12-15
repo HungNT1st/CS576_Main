@@ -24,10 +24,10 @@ public class Trap : MonoBehaviour
         {
             if (hitCollider.CompareTag("Player"))
             {
-                PlayerHealth playerHealth = hitCollider.GetComponent<PlayerHealth>();
-                if (playerHealth != null)
+                VillainHealth villainHealth = hitCollider.GetComponent<VillainHealth>();
+                if (villainHealth != null)
                 {
-                    playerHealth.TakeDamage(damage);
+                    villainHealth.TakeDamage();
                 }
             }
         }
