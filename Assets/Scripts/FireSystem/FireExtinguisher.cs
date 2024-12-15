@@ -12,6 +12,10 @@ public class FireExtinguisher : MonoBehaviour
     
     private bool isSpraying = false;
 
+    void Start()
+    {
+        StopSpraying()
+    }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.P))
