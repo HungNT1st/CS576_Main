@@ -4,8 +4,12 @@
 
 // public class QuestionMenuScript : MonoBehaviour
 // {
-//     public FightVillian fightVillian;
-
+//     [Header("References")]
+//     public FightVillian fightVillian;    
+//     public GameObject villain;           
+    
+//     private UIDocument uiDocument;
+    
 //     private Label headerLabel;
 //     private Button optionA;
 //     private Button optionB;
@@ -14,8 +18,6 @@
 
 //     private int correctAnswer;
 //     private bool questionAnswered = false;
-
-//     private UIDocument uiDocument;
 
 //     void Awake()
 //     {
@@ -57,7 +59,7 @@
 //         correctAnswer = a + b;
 
 //         headerLabel.text = $"What is {a} + {b}?";
-//         headerLabel.style.color = new StyleColor(Color.white); 
+//         headerLabel.style.color = new StyleColor(Color.white);
 
 //         int[] answers = new int[4];
 //         int correctIndex = Random.Range(0, 4);
@@ -73,7 +75,7 @@
 //                 int distractor;
 //                 do
 //                 {
-//                     distractor = Random.Range(1, 21); 
+//                     distractor = Random.Range(1, 21);  
 //                 } while (distractor == correctAnswer);
 //                 answers[i] = distractor;
 //             }
@@ -87,7 +89,7 @@
 
 //     private void OnOptionSelected(Button selectedButton)
 //     {
-//         if (questionAnswered) return;  
+//         if (questionAnswered) return;
 //         questionAnswered = true;
 
 //         int selectedValue = int.Parse(selectedButton.text);
@@ -96,11 +98,23 @@
 //         {
 //             headerLabel.text = "CORRECT";
 //             headerLabel.style.color = new StyleColor(Color.green);
+
+//             if (villain != null)
+//             {
+//                 Destroy(villain);
+//                 Debug.Log("Win a match, remove a villain");
+//             }
+//             else
+//             {
+//                 Debug.LogWarning("No villain reference assigned in the QuestionMenuScript!");
+//             }
 //         }
 //         else
 //         {
 //             headerLabel.text = "WRONG";
 //             headerLabel.style.color = new StyleColor(Color.red);
+
+//             Debug.Log("Lose a match, loss health");
 //         }
 
 //         StartCoroutine(EndQuestionAfterDelay(2f));
@@ -118,7 +132,7 @@
 //         }
 //         else
 //         {
-//             Debug.LogWarning("No FightVillian reference found!");
+//             Debug.LogWarning("FightVillian reference is missing on the QuestionMenuScript!");
 //         }
 //     }
 // }
@@ -132,11 +146,12 @@ using System.Collections;
 public class QuestionMenuScript : MonoBehaviour
 {
     [Header("References")]
-    public FightVillian fightVillian;    
-    public GameObject villain;           
-    
+    public FightVillian fightVillian;       
+    public GameManager gameManager;         
+    public GameObject villain;             
+
     private UIDocument uiDocument;
-    
+
     private Label headerLabel;
     private Button optionA;
     private Button optionB;
@@ -226,14 +241,17 @@ public class QuestionMenuScript : MonoBehaviour
             headerLabel.text = "CORRECT";
             headerLabel.style.color = new StyleColor(Color.green);
 
-            if (villain != null)
+            if (villain != null) Destroy(villain);
+
+            Debug.Log("Win a match, remove a villain");
+
+            if (gameManager != null)
             {
-                Destroy(villain);
-                Debug.Log("Win a match, remove a villain");
+                gameManager.HealWorld(1f);  
             }
             else
             {
-                Debug.LogWarning("No villain reference assigned in the QuestionMenuScript!");
+                Debug.LogWarning("No GameManager reference assigned in QuestionMenuScript!");
             }
         }
         else
@@ -242,6 +260,15 @@ public class QuestionMenuScript : MonoBehaviour
             headerLabel.style.color = new StyleColor(Color.red);
 
             Debug.Log("Lose a match, loss health");
+
+            if (gameManager != null)
+            {
+                gameManager.DamagePlayer(5f);
+            }
+            else
+            {
+                Debug.LogWarning("No GameManager reference assigned in QuestionMenuScript!");
+            }
         }
 
         StartCoroutine(EndQuestionAfterDelay(2f));

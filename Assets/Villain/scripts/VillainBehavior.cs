@@ -3,6 +3,9 @@ using System.Collections;
 
 public class VillainBehavior : MonoBehaviour
 {
+    public GameManager gameManager;
+    // Set tree dmg here  
+    public float treeDmg = 0.5f;
     [SerializeField] private float attackRange = 2f;
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private int maxHealth = 5;
@@ -87,6 +90,10 @@ public class VillainBehavior : MonoBehaviour
             if (treeRef != null)
             {
                 treeRef.RemoveTree();
+                if (gameManager != null)
+                {
+                    gameManager.DamageWorld(treeDmg);  
+                }
             }
             currentTargetTree = null;
         }
