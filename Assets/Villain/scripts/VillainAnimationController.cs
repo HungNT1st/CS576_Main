@@ -4,46 +4,43 @@ public class VillainAnimationController : MonoBehaviour
 {
     private Animator anim;
     
-    // animation states
-    public static readonly string Idle = "Idle";
-    public static readonly string Attack = "AttackHor";
-    public static readonly string Running = "Running";
-    public static readonly string Death = "Death";
-    public static string curState;
+    // State parameter name
+    private static readonly string STATE_PARAM = "state";
+    
+    // State values
+    public static class States
+    {
+        public const int Idle = 0;
+        public const int Running = 1;
+        public const int Attack = 2;
+        public const int Death = 3;
+    }
+    
+    private int currentState;
 
     void Start() 
     {
         anim = GetComponent<Animator>();
+        SetState(States.Idle); // Start in idle state
     }
 
-    public void CrossFade(string state)
+    public void SetState(int newState)
     {
-        if (curState != state)
+        if (currentState != newState)
         {
-            anim.CrossFade(state, 0.01f, 0);
-            curState = state;
+            anim.SetInteger(STATE_PARAM, newState);
+            currentState = newState;
         }
     }
 
     public float GetClipLength(string clipName)
-
     {
-
-        Animator animator = GetComponent<Animator>();
-
-        AnimatorClipInfo[] clipInfo = animator.GetCurrentAnimatorClipInfo(0);
-
+        AnimatorClipInfo[] clipInfo = anim.GetCurrentAnimatorClipInfo(0);
         foreach (AnimatorClipInfo clip in clipInfo)
-
         {
-
             if (clip.clip.name == clipName)
-
                 return clip.clip.length;
-
         }
-
-        return 1f; 
-
+        return 1f;
     }
 }

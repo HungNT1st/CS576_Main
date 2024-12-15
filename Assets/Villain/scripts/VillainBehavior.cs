@@ -62,11 +62,10 @@ public class VillainBehavior : MonoBehaviour
         transform.position += direction * moveSpeed * Time.deltaTime;
         transform.rotation = Quaternion.LookRotation(direction);
         
-        // Update animation
+        // Update animation to running state
         if (animController != null)
         {
-            // Assuming "Running" is the animation state name
-            animController.CrossFade("Running");
+            animController.SetState(VillainAnimationController.States.Running);
         }
     }
 
@@ -74,31 +73,39 @@ public class VillainBehavior : MonoBehaviour
     {
         isAttacking = true;
         
-        // Play attack animation
-        if (animController != null)
+        while (currentTargetTree != null && !isDead)
         {
-            animController.CrossFade("AttackHor");
-            yield return new WaitForSeconds(animController.GetClipLength("AttackHor"));
-        }
-
-        // float damage = Random.Range(1f, 1.7f);
-        // currentTreeHealth -= damage;
-        currentTreeHealth--;
-        if (currentTreeHealth <= 0 && currentTargetTree != null)
-        {
-            TreeReference treeRef = currentTargetTree.GetComponent<TreeReference>();
-            if (treeRef != null)
+            // Set attack state
+            if (animController != null)
             {
-                treeRef.RemoveTree();
-                if (gameManager != null)
-                {
-                    gameManager.DamageWorld(treeDmg);  
-                }
+                animController.SetState(VillainAnimationController.States.Attack);
+                yield return new WaitForSeconds(animController.GetClipLength("AttackHor"));
             }
-            currentTargetTree = null;
-        }
 
-        // yield return new WaitForSeconds(attackCooldown);
+            currentTreeHealth--;
+            if (currentTreeHealth <= 0 && currentTargetTree != null)
+            {
+                TreeReference treeRef = currentTargetTree.GetComponent<TreeReference>();
+                if (treeRef != null)
+                {
+                    treeRef.RemoveTree();
+                    if (gameManager != null)
+                    {
+                        gameManager.DamageWorld(treeDmg);  
+                    }
+                }
+                currentTargetTree = null;
+                // Return to idle state when target is destroyed
+                if (animController != null)
+                {
+                    animController.SetState(VillainAnimationController.States.Idle);
+                }
+                break;
+            }
+
+            yield return new WaitForSeconds(attackCooldown);
+        }
+        
         isAttacking = false;
     }
 
@@ -139,7 +146,7 @@ public class VillainBehavior : MonoBehaviour
         isDead = true;
         if (animController != null)
         {
-            animController.CrossFade("Death");
+            animController.SetState(VillainAnimationController.States.Death);
         }
         StartCoroutine(DeathSequence());
     }

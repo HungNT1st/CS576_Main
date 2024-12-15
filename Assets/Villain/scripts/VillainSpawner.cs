@@ -48,7 +48,6 @@ public class VillainSpawner : MonoBehaviour
         trees = terrain.terrainData.treeInstances;
         Debug.Log($"Found {trees.Length} trees on terrain");
 
-        // DO NOT SPAWN 2 TREE AT THE SAME PLACES. Ahh, I hate fixing this. 
         int i = 0;
         foreach (TreeInstance tree in trees.Where(t => t.prototypeIndex >= 0 && t.prototypeIndex <= 3))
         {
