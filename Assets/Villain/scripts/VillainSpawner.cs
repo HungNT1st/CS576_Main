@@ -20,6 +20,13 @@ public class VillainSpawner : MonoBehaviour
         SpawnVillains();
     }
 
+    private void Update()
+    {
+        terrain = Terrain.activeTerrain;
+        trees = terrain.terrainData.treeInstances;
+        Debug.Log($"Found {trees.Length} trees on terrain");
+    }
+
     private void InitializeTreeColliders()
     {
         terrain = Terrain.activeTerrain;
