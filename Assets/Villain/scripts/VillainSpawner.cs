@@ -1,14 +1,16 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 
 public class VillainSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject villainPrefab;
     [SerializeField] private GameObject treeColliderPrefab;
-    [SerializeField] private int numberOfVillains = 50;
+    [SerializeField] private int numberOfVillains = 20;
     [SerializeField] private float spawnRadius = 100f;
     [SerializeField] private LayerMask terrainLayer;
     [SerializeField] private float minDistanceFromTrees = 2f;
+    [SerializeField]  private GameObject player;
 
     private List<GameObject> treeColliders = new List<GameObject>();
     private Terrain terrain;
@@ -16,16 +18,22 @@ public class VillainSpawner : MonoBehaviour
 
     private void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
+        if (player == null)
+        {
+            Debug.LogError("Player not found! Make sure the player has the 'Player' tag.");
+            return;
+        }
         InitializeTreeColliders();
         SpawnVillains();
     }
 
-    private void Update()
-    {
-        terrain = Terrain.activeTerrain;
-        trees = terrain.terrainData.treeInstances;
-        Debug.Log($"Found {trees.Length} trees on terrain");
-    }
+    // private void Update()
+    // {
+    //     terrain = Terrain.activeTerrain;
+    //     trees = terrain.terrainData.treeInstances;
+    //     Debug.Log($"Found {trees.Length} trees on terrain");
+    // }
 
     private void InitializeTreeColliders()
     {
@@ -70,10 +78,33 @@ public class VillainSpawner : MonoBehaviour
 
         for (int i = 0; i < Mathf.Min(numberOfVillains, availableTrees.Count); i++)
         {
-            // Pick a random tree
-            int randomTreeIndex = Random.Range(0, availableTrees.Count);
-            GameObject targetTree = availableTrees[randomTreeIndex];
-            availableTrees.RemoveAt(randomTreeIndex);
+            // // Pick a random tree
+            // int randomTreeIndex = Random.Range(0, availableTrees.Count);
+            // GameObject targetTree = availableTrees[randomTreeIndex];
+            // availableTrees.RemoveAt(randomTreeIndex);
+            
+            float randomValue = Random.value;
+            float maxRadius;
+            if (randomValue < 0.5f) // 50% 
+                maxRadius = 50f;
+            else if (randomValue < 0.8f) // 30% 
+                maxRadius = 80f;
+            else // 20% 
+                maxRadius = 120f;
+
+            List<GameObject> treesInRange = availableTrees.Where(tree => 
+                Vector2.Distance(
+                    new Vector2(tree.transform.position.x, tree.transform.position.z),
+                    new Vector2(player.transform.position.x, player.transform.position.z)
+                ) <= maxRadius
+            ).ToList();
+
+            if (treesInRange.Count == 0)
+                treesInRange = availableTrees;
+
+            int randomTreeIndex = Random.Range(0, treesInRange.Count);
+            GameObject targetTree = treesInRange[randomTreeIndex];
+            availableTrees.Remove(targetTree);
 
             // Spawn villain near the tree
             Vector3 spawnPosition = targetTree.transform.position + (Random.insideUnitSphere * minDistanceFromTrees);
@@ -86,7 +117,11 @@ public class VillainSpawner : MonoBehaviour
                 villainBehavior.Initialize(targetTree.transform);
             }
 
+            float distanceFromPlayer = Vector3.Distance(spawnPosition, player.transform.position);
+            Debug.Log($"Spawned villain {i + 1} at distance {distanceFromPlayer:F2} from player");
         }
+
+        villainPrefab.SetActive(false);
     }
 
     private float GetTerrainHeight(Vector3 position)

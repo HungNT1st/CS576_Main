@@ -5487,7 +5487,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 6a5c2f9458180864dae8796833777eef, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5767,12 +5767,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   villainPrefab: {fileID: 1033073718}
   treeColliderPrefab: {fileID: 2479184009378418726, guid: b62637568d07eb141b948ab45ea8c3d4, type: 3}
-  numberOfVillains: 50
+  numberOfVillains: 20
   spawnRadius: 100
   terrainLayer:
     serializedVersion: 2
     m_Bits: 0
   minDistanceFromTrees: 2
+  player: {fileID: 1846070690}
 --- !u!4 &602115922
 Transform:
   m_ObjectHideFlags: 0
@@ -7851,7 +7852,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f2c983b9a61737c4aaf81d7adc01b3c0, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8415,6 +8416,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7507501101374053384, guid: 516f5b8c780f050499e83e3e45588ae9, type: 3}
   m_PrefabInstance: {fileID: 1838766908}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1846070690 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4459864850019384750, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
+  m_PrefabInstance: {fileID: 1741515526}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1874485212 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3287948611943350881, guid: 0f3d14a9a6b2ceb469c15d151552a614, type: 3}
@@ -8771,7 +8777,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: e9abff231a532934681e60e09be88842, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9025,6 +9031,10 @@ PrefabInstance:
     - target: {fileID: 8716254303641427398, guid: 31598a881a19b451aaf46ea9cc68d8b6, type: 3}
       propertyPath: m_Name
       value: Villain
+      objectReference: {fileID: 0}
+    - target: {fileID: 8716254303641427398, guid: 31598a881a19b451aaf46ea9cc68d8b6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
