@@ -1,7 +1,14 @@
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 
 public class GameManager : Singleton<GameManager>
 {
+    [Header("Post processing")]
+    [SerializeField] PostProcessVolume volume;
+    [SerializeField] Color goodColor;
+    [SerializeField] Color badColor;
+
+    [Header("Health")]
     public float maxWorldHealth = 100f;
     private float currentWorldHealth;
 
@@ -14,12 +21,14 @@ public class GameManager : Singleton<GameManager>
         currentPlayerHealth = maxPlayerHealth;
 
         UpdateHealthUI();
+        UpdateWorldPostProcessing();
     }
 
     public void DamageWorld(float amount)
     {
         currentWorldHealth = Mathf.Clamp(currentWorldHealth - amount, 0f, maxWorldHealth);
         UpdateHealthUI();
+        UpdateWorldPostProcessing();
 
         if (currentWorldHealth <= 0)
         {
@@ -32,6 +41,8 @@ public class GameManager : Singleton<GameManager>
     {
         currentWorldHealth = Mathf.Clamp(currentWorldHealth + amount, 0f, maxWorldHealth);
         UpdateHealthUI();
+        UpdateWorldPostProcessing();
+
     }
 
     public void DamagePlayer(float amount)
@@ -56,5 +67,12 @@ public class GameManager : Singleton<GameManager>
     {
         HUD.Instance.SetPlayerHealth((float)(currentPlayerHealth/ maxPlayerHealth));
         HUD.Instance.SetEnvironmentHealth((float)(currentWorldHealth / maxWorldHealth));
+    }
+    private void UpdateWorldPostProcessing() {
+        if (volume.profile.TryGetSettings<ColorGrading>(out var cg))
+        {
+            cg.colorFilter.overrideState = true;
+            cg.colorFilter.value = Color.Lerp(badColor, goodColor, (float)(currentWorldHealth / maxWorldHealth));
+        }
     }
 }
