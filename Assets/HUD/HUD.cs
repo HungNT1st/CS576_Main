@@ -9,6 +9,7 @@ using UnityEngine.UI;
 public class HUD : Singleton<HUD>
 {
     [SerializeField] Image environmentHealth;
+    [SerializeField] Image playerHealth;
     [Header("Small task")]
     [SerializeField] TextMeshProUGUI smallTaskTMP;
     [SerializeField] Image smallTaskLoading;
@@ -21,8 +22,14 @@ public class HUD : Singleton<HUD>
     }
 
     public void SetEnvironmentHealth(float val) {
+        SetImageFill(environmentHealth, val);
+    }
+    public void SetPlayerHealth(float val) {
+        SetImageFill(playerHealth, val);
+    }
+    private void SetImageFill(Image img, float val) {
         if (val < 0 || val > 1) throw new Exception("health value should be between 0 and 1");
-        environmentHealth.fillAmount = val;
+        img.DOFillAmount(val, 0.5f);
     }
 
     public void IncreaseEnvironmentHealth(float delta) {
