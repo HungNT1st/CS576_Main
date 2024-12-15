@@ -536,7 +536,7 @@ GameObject:
   - component: {fileID: 185597327}
   - component: {fileID: 185597326}
   - component: {fileID: 185597328}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: Fire Extinguisher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5371,7 +5371,7 @@ MonoBehaviour:
   waterRange: 5
   fireLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   waterSprayEffect: {fileID: 185597327}
 --- !u!1001 &191743660
 PrefabInstance:
@@ -5948,78 +5948,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 14.159996, y: 17.583815, z: 14.159991}
   m_Center: {x: -0.0000025431316, y: -8.791907, z: 0.0000022888185}
---- !u!1001 &483059230
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1632659334546840, guid: bbd1860d44f6c7546aad605f3666475f, type: 3}
-      propertyPath: m_Name
-      value: FireArea
-      objectReference: {fileID: 0}
-    - target: {fileID: 1632659334546840, guid: bbd1860d44f6c7546aad605f3666475f, type: 3}
-      propertyPath: m_TagString
-      value: Fire
-      objectReference: {fileID: 0}
-    - target: {fileID: 4256412018972890, guid: bbd1860d44f6c7546aad605f3666475f, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 469.87494
-      objectReference: {fileID: 0}
-    - target: {fileID: 4256412018972890, guid: bbd1860d44f6c7546aad605f3666475f, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 13.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 4256412018972890, guid: bbd1860d44f6c7546aad605f3666475f, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 558.82935
-      objectReference: {fileID: 0}
-    - target: {fileID: 4256412018972890, guid: bbd1860d44f6c7546aad605f3666475f, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 4256412018972890, guid: bbd1860d44f6c7546aad605f3666475f, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 4256412018972890, guid: bbd1860d44f6c7546aad605f3666475f, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4256412018972890, guid: bbd1860d44f6c7546aad605f3666475f, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4256412018972890, guid: bbd1860d44f6c7546aad605f3666475f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 270
-      objectReference: {fileID: 0}
-    - target: {fileID: 4256412018972890, guid: bbd1860d44f6c7546aad605f3666475f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4256412018972890, guid: bbd1860d44f6c7546aad605f3666475f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 199439982024837534, guid: bbd1860d44f6c7546aad605f3666475f, type: 3}
-      propertyPath: m_Materials.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 199536971008656446, guid: bbd1860d44f6c7546aad605f3666475f, type: 3}
-      propertyPath: m_Materials.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1632659334546840, guid: bbd1860d44f6c7546aad605f3666475f, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1452960097}
-  m_SourcePrefab: {fileID: 100100000, guid: bbd1860d44f6c7546aad605f3666475f, type: 3}
 --- !u!1 &532630954 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1649361158825916, guid: 4500da6a464da55408dd1ff2324163a7, type: 3}
@@ -6608,7 +6536,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 1006447397}
   yoffset: 17
---- !u!198 &869819950 stripped
+--- !u!198 &869819951 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 198101188465963812, guid: d51cf4b03ec965a4889f6dc0a533e56a, type: 3}
   m_PrefabInstance: {fileID: 869819946}
@@ -7418,7 +7346,7 @@ GameObject:
   - component: {fileID: 1175037230}
   - component: {fileID: 1175037233}
   - component: {fileID: 1175037234}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7632,6 +7560,9 @@ GameObject:
   - component: {fileID: 1441668242}
   - component: {fileID: 1441668241}
   - component: {fileID: 1441668243}
+  - component: {fileID: 1441668244}
+  - component: {fileID: 1441668245}
+  - component: {fileID: 1441668246}
   m_Layer: 0
   m_Name: Handlers
   m_TagString: Untagged
@@ -7688,23 +7619,70 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetTerrain: {fileID: 1175037231}
   treePrefab: {fileID: 6419187236850804161, guid: e05ae677c7b3bc546bd36b488586fb0c, type: 3}
---- !u!1 &1452960096 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1632659334546840, guid: bbd1860d44f6c7546aad605f3666475f, type: 3}
-  m_PrefabInstance: {fileID: 483059230}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1452960097
+--- !u!114 &1441668244
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1452960096}
+  m_GameObject: {fileID: 1441668240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f94dceaef26716040aff47cfc239c21a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnableItems:
+  - itemPrefab: {fileID: 1460632416638922788, guid: 4e5cfdbb79210084ba3def36800cfb1b, type: 3}
+    spawnWeight: 1
+  - itemPrefab: {fileID: 2215441590038146254, guid: 5341099f149d5844a8be62a5065ff163, type: 3}
+    spawnWeight: 1
+  - itemPrefab: {fileID: 7120382088629031720, guid: d15ff1e0b5163044faec84c42876f112, type: 3}
+    spawnWeight: 1
+  numberOfItemsToSpawn: 100
+  spawnAreaSize: {x: 1000, y: 1000}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  raycastHeight: 1000
+  minimumDistanceBetweenItems: 10
+  useGridSpawning: 1
+  gridDivisions: 10
+--- !u!114 &1441668245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1441668240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42c9e885846bc2043b867e2bf563370e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firePrefab: {fileID: 1632659334546840, guid: bbd1860d44f6c7546aad605f3666475f, type: 3}
+  spawnInterval: 10
+  maxFiresAtOnce: 3
+  initialFireCount: 5
+  minSpawnRadius: 20
+  maxSpawnRadius: 50
+--- !u!114 &1441668246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1441668240}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 818b10d9d60bc2b469a5d617c5df4c99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fireParticleSystem: {fileID: 198137211002769400, guid: bbd1860d44f6c7546aad605f3666475f, type: 3}
+  extinguishDelay: 1
+  damageAmount: 10
+  damageInterval: 0.5
+  waterNeeded: 3
+  steamEffect: {fileID: 869819951}
   fireParticleSystem: {fileID: 1452960099}
   extinguishDelay: 3
   damageAmount: 10
@@ -8620,6 +8598,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4459864850019384738, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4459864850019384741, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
+      propertyPath: m_IsKinematic
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4459864850019384750, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
@@ -9756,4 +9738,3 @@ SceneRoots:
   - {fileID: 1075213412}
   - {fileID: 2005049462}
   - {fileID: 1441668242}
-  - {fileID: 483059230}
