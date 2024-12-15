@@ -6,13 +6,13 @@ public class VillainBehavior : MonoBehaviour
     public GameManager gameManager;
     // Set tree dmg here  
     public float treeDmg = 0.5f;
-    [SerializeField] private float attackRange = 2f;
+    [SerializeField] private float attackRange = 1.5f;
     [SerializeField] private float moveSpeed = 3f;
     [SerializeField] private int maxHealth = 5;
     [SerializeField] private float attackCooldown = 1f;
     
     private Transform currentTargetTree;
-    private int currentTreeHealth = 10;
+    private int currentTreeHealth = 20;
     private int health;
     private bool isAttacking = false;
     private VillainAnimationController animController;

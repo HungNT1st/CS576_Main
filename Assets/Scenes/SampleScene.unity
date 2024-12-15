@@ -5912,7 +5912,7 @@ MonoBehaviour:
   - {fileID: 5935278547815300987, guid: e05ae677c7b3bc546bd36b488586fb0c, type: 3}
   - {fileID: 2479184009378418726, guid: b62637568d07eb141b948ab45ea8c3d4, type: 3}
   - {fileID: 7296054959696050501, guid: 367ab66e2689a8345a8fb8fd14a4f90c, type: 3}
-  numberOfVillains: 50
+  numberOfVillains: 20
   spawnRadius: 100
   terrainLayer:
     serializedVersion: 2
@@ -6723,7 +6723,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 2005049461}
   treeDmg: 0.5
-  attackRange: 2
+  attackRange: 1.5
   moveSpeed: 3
   maxHealth: 5
   attackCooldown: 1
