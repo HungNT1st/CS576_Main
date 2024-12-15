@@ -86,7 +86,7 @@ public class VillainBehavior : MonoBehaviour
             }
 
             // Wait for attack animation to complete
-            yield return new WaitForSeconds(animController.GetClipLength("AttackHor"));
+            // yield return new WaitForSeconds(attackCooldown);
 
             // Deal damage
             currentTreeHealth--;
