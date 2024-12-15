@@ -6388,6 +6388,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 1006447397}
   yoffset: 17
+--- !u!198 &869819951 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 198101188465963812, guid: d51cf4b03ec965a4889f6dc0a533e56a, type: 3}
+  m_PrefabInstance: {fileID: 869819946}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &896470944
 GameObject:
   m_ObjectHideFlags: 0
@@ -7399,6 +7404,7 @@ GameObject:
   - component: {fileID: 1441668243}
   - component: {fileID: 1441668244}
   - component: {fileID: 1441668245}
+  - component: {fileID: 1441668246}
   m_Layer: 0
   m_Name: Handlers
   m_TagString: Untagged
@@ -7498,6 +7504,27 @@ MonoBehaviour:
   firePrefab: {fileID: 1632659334546840, guid: bbd1860d44f6c7546aad605f3666475f, type: 3}
   spawnInterval: 10
   maxFiresAtOnce: 3
+  initialFireCount: 5
+  minSpawnRadius: 20
+  maxSpawnRadius: 50
+--- !u!114 &1441668246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1441668240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 818b10d9d60bc2b469a5d617c5df4c99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireParticleSystem: {fileID: 198137211002769400, guid: bbd1860d44f6c7546aad605f3666475f, type: 3}
+  extinguishDelay: 1
+  damageAmount: 10
+  damageInterval: 0.5
+  waterNeeded: 3
+  steamEffect: {fileID: 869819951}
 --- !u!1 &1484754952
 GameObject:
   m_ObjectHideFlags: 0
