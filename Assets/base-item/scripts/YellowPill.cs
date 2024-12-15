@@ -13,24 +13,19 @@ public class YellowPill : BasePill
     {
         base.ActivateEffect();
         
-        PlayerMovement playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
-        if (playerMovement != null)
+        VillainBehavior villain = GameObject.FindGameObjectWithTag("Player").GetComponent<VillainBehavior>();
+        if (villain != null)
         {
-            Debug.Log("Setting speed multiplier to: " + speedMultiplier);
-            playerMovement.SetSpeedMultiplier(speedMultiplier);
-        }
-        else
-        {
-            Debug.Log("PlayerMovement component not found!");
+            villain.SetSpeedMultiplier(speedMultiplier);
         }
     }
 
     protected override void DeactivateEffect()
     {
-        PlayerMovement playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
-        if (playerMovement != null)
+        VillainBehavior villain = GameObject.FindGameObjectWithTag("Player").GetComponent<VillainBehavior>();
+        if (villain != null)
         {
-            playerMovement.SetSpeedMultiplier(1f);
+            villain.ResetSpeed();
         }
         base.DeactivateEffect();
     }

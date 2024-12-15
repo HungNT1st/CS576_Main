@@ -8,10 +8,10 @@ public class RedPill : BasePill
     {
         base.ActivateEffect();
         
-        PlayerHealth playerHealth = GetComponentInParent<PlayerHealth>();
-        if (playerHealth != null)
+        VillainHealth villainHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<VillainHealth>();
+        if (villainHealth != null)
         {
-            playerHealth.Heal(healAmount);
+            villainHealth.TakeDamage();
         }
     }
 } 

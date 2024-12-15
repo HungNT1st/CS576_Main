@@ -8,6 +8,9 @@ public class VillainBehavior : MonoBehaviour
     [SerializeField] private int maxHealth = 5;
     [SerializeField] private float attackCooldown = 1f;
     
+    private float baseSpeed;
+    private float speedMultiplier = 1f;
+
     private Transform currentTargetTree;
     private int currentTreeHealth = 10;
     private int health;
@@ -19,6 +22,19 @@ public class VillainBehavior : MonoBehaviour
     {
         health = maxHealth;
         animController = GetComponent<VillainAnimationController>();
+        baseSpeed = moveSpeed;
+    }
+
+    public void SetSpeedMultiplier(float multiplier)
+    {
+        speedMultiplier = multiplier;
+        moveSpeed = baseSpeed * speedMultiplier;
+    }
+
+    public void ResetSpeed()
+    {
+        speedMultiplier = 1f;
+        moveSpeed = baseSpeed;
     }
 
     public void Initialize(Transform initialTree)
