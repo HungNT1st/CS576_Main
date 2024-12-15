@@ -132,7 +132,11 @@ public class VillainSpawner : MonoBehaviour
             Vector3 spawnPosition = targetTree.transform.position + (Random.insideUnitSphere * minDistanceFromTrees);
             spawnPosition.y = GetTerrainHeight(spawnPosition);
 
-            GameObject villain = Instantiate(villainPrefab, spawnPosition, Quaternion.identity);
+            // Calculate initial rotation to face the tree
+            Vector3 directionToTree = (targetTree.transform.position - spawnPosition).normalized;
+            Quaternion initialRotation = Quaternion.LookRotation(directionToTree);
+
+            GameObject villain = Instantiate(villainPrefab, spawnPosition, initialRotation);
             VillainBehavior villainBehavior = villain.GetComponent<VillainBehavior>();
             if (villainBehavior != null)
             {

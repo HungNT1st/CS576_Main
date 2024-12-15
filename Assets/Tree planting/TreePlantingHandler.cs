@@ -20,7 +20,7 @@ public class TreePlantingHandler : MonoBehaviour
         spawnPos.y = targetTerrain.SampleHeight(spawnPos) - TREEHEIGHT;
 
         Transform tree = Instantiate(treePrefab, spawnPos, Quaternion.identity);
-        tree.DOMoveY(spawnPos.y + TREEHEIGHT, 4f);
+        tree.DOMoveY(spawnPos.y + TREEHEIGHT, 5f);
 
         AddTreeToTerrain(spawnPos);
     }
