@@ -52,7 +52,7 @@ public class TreePlantingHandler : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(Keycode.T))
+        if (Input.GetKeyDown(KeyCode.T))
         {
             HUD.Instance.SetSmallTaskLoading("Planting", 5).onComplete += SpawnTreeAtPlayerPosition;
         }

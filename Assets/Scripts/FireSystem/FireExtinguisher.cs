@@ -14,7 +14,7 @@ public class FireExtinguisher : MonoBehaviour
 
     void Start()
     {
-        StopSpraying()
+        StopSpraying();
     }
     void Update()
     {
