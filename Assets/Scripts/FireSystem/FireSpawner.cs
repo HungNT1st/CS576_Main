@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Linq;
 
 public class FireSpawner : MonoBehaviour
 {
@@ -7,11 +8,21 @@ public class FireSpawner : MonoBehaviour
     [SerializeField] private float spawnInterval = 10f;
     [SerializeField] private int maxFiresAtOnce = 3;
     [SerializeField] private int initialFireCount = 5;
+    [SerializeField] private float minSpawnRadius = 20f;
+    [SerializeField] private float maxSpawnRadius = 50f;
+    
+    private Transform playerTransform;
     
     private void Start()
     {
-        SpawnInitialFires();
+        playerTransform = GameObject.FindGameObjectWithTag("Player")?.transform;
+        if (playerTransform == null)
+        {
+            Debug.LogError("Player not found! Make sure the player has the 'Player' tag.");
+            return;
+        }
         
+        SpawnInitialFires();
         StartCoroutine(SpawnFireRoutine());
     }
     
@@ -19,8 +30,33 @@ public class FireSpawner : MonoBehaviour
     {
         for (int i = 0; i < initialFireCount; i++)
         {
-            SpawnFireOnRandomTree();
+            SpawnFireNearPlayer();
         }
+    }
+    
+    private void SpawnFireNearPlayer()
+    {
+        GameObject[] allTrees = GameObject.FindGameObjectsWithTag("Tree");
+        
+        var treesInRange = allTrees.Where(tree => {
+            float distance = Vector3.Distance(tree.transform.position, playerTransform.position);
+            return distance >= minSpawnRadius && distance <= maxSpawnRadius;
+        }).ToList();
+        
+        if (treesInRange.Count == 0) return;
+        
+        // Get random tree from filtered list
+        GameObject selectedTree = treesInRange[Random.Range(0, treesInRange.Count)];
+        
+        // Check if tree already has fire
+        if (selectedTree.GetComponentInChildren<FireManager>() != null) return;
+        
+        // Spawn fire at tree position with rotation
+        Vector3 spawnPos = selectedTree.transform.position;
+        Quaternion rotation = Quaternion.Euler(270f, 0f, 0f);
+        GameObject fire = Instantiate(firePrefab, spawnPos, rotation);
+        fire.transform.SetParent(selectedTree.transform);
+        fire.tag = "Fire";
     }
     
     private IEnumerator SpawnFireRoutine()
@@ -46,7 +82,7 @@ public class FireSpawner : MonoBehaviour
         // Check if tree already has fire
         if (selectedTree.GetComponentInChildren<FireManager>() != null) return;
         
-        // Spawn fire at tree position with 270-degree rotation on X axis
+        // Spawn fire at tree position with rotation
         Vector3 spawnPos = selectedTree.transform.position;
         Quaternion rotation = Quaternion.Euler(270f, 0f, 0f);
         GameObject fire = Instantiate(firePrefab, spawnPos, rotation);
