@@ -9,6 +9,8 @@ public class FightVillian : MonoBehaviour
     private float hitboxDuration = 1f;
     private float hitboxTimer = 0f;
     private bool fightStarted = false;
+    
+    public GameObject QuestionMenu;
 
     void Start()
     {
@@ -31,6 +33,10 @@ public class FightVillian : MonoBehaviour
             {
                 PauseGame();
                 fightStarted = false;
+                QuestionMenu.SetActive(true);
+
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
             }
         }
 
@@ -63,6 +69,15 @@ public class FightVillian : MonoBehaviour
                 break;
             }
         }
+    }
+
+    public void CloseQuestionMenu()
+    {
+        QuestionMenu.SetActive(false);
+        Time.timeScale = 1f;
+        
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     void ActivateHitbox()
