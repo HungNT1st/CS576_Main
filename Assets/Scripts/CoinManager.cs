@@ -31,6 +31,12 @@ public class CoinManager : MonoBehaviour
         UpdateCoinDisplay();
     }
 
+    public void RemoveCoins(int amount)
+    {
+        coins -= amount;
+        UpdateCoinDisplay();
+    }
+
     private void UpdateCoinDisplay()
     {
         if (coinText != null)
