@@ -43,17 +43,35 @@ public class FireManager : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log($"Trigger Enter with: {other.gameObject.name}, Tag: {other.tag}");
+    }
+
     private void OnTriggerStay(Collider other)
     {
-        if (isExtinguished) return;
-
-        if (other.CompareTag("Player") && Time.time >= nextDamageTime)
+        if (isExtinguished)
         {
-            if (gameManager != null)
+            Debug.Log("Fire is extinguished, no damage");
+            return;
+        }
+
+        if (other.CompareTag("Player"))
+        {
+            Debug.Log($"Player detected, Time: {Time.time}, Next damage time: {nextDamageTime}");
+            
+            if (Time.time >= nextDamageTime)
             {
-                gameManager.DamagePlayer(damageAmount);
-                nextDamageTime = Time.time + damageInterval;
-                Debug.Log($"Fire damaged player for {damageAmount} damage");
+                if (gameManager != null)
+                {
+                    gameManager.DamagePlayer(damageAmount);
+                    nextDamageTime = Time.time + damageInterval;
+                    Debug.Log($"Fire damaged player for {damageAmount} damage");
+                }
+                else
+                {
+                    Debug.LogError("GameManager is null when trying to damage player");
+                }
             }
         }
     }
