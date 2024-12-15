@@ -27,6 +27,7 @@ public class VillainBehavior : MonoBehaviour
     public void Initialize(Transform initialTree)
     {
         currentTargetTree = initialTree;
+        FaceTarget();
         StartCoroutine(AIRoutine());
     }
 
@@ -75,13 +76,19 @@ public class VillainBehavior : MonoBehaviour
         
         while (currentTargetTree != null && !isDead)
         {
+            // Face the tree while attacking
+            FaceTarget();
+            
             // Set attack state
             if (animController != null)
             {
                 animController.SetState(VillainAnimationController.States.Attack);
-                yield return new WaitForSeconds(animController.GetClipLength("AttackHor"));
             }
 
+            // Wait for attack animation to complete
+            yield return new WaitForSeconds(animController.GetClipLength("AttackHor"));
+
+            // Deal damage
             currentTreeHealth--;
             if (currentTreeHealth <= 0 && currentTargetTree != null)
             {
@@ -98,12 +105,19 @@ public class VillainBehavior : MonoBehaviour
                 // Return to idle state when target is destroyed
                 if (animController != null)
                 {
-                    animController.SetState(VillainAnimationController.States.Attack);
+                    animController.SetState(VillainAnimationController.States.Idle);
                 }
                 break;
             }
 
+            // Brief pause between attacks
             yield return new WaitForSeconds(attackCooldown);
+            
+            // Reset to attack state for next attack
+            if (animController != null && currentTargetTree != null)
+            {
+                animController.SetState(VillainAnimationController.States.Attack);
+            }
         }
         
         isAttacking = false;
@@ -156,5 +170,14 @@ public class VillainBehavior : MonoBehaviour
         // Wait for death animation to play
         yield return new WaitForSeconds(1f);
         Destroy(gameObject);
+    }
+
+    private void FaceTarget()
+    {
+        if (currentTargetTree != null)
+        {
+            Vector3 direction = (currentTargetTree.position - transform.position).normalized;
+            transform.rotation = Quaternion.LookRotation(direction);
+        }
     }
 }
