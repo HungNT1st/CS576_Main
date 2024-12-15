@@ -131,7 +131,7 @@ public class VillainSpawner : MonoBehaviour
 
             // Spawn villain near the tree
             Vector3 spawnPosition = targetTree.transform.position + (Random.insideUnitSphere * minDistanceFromTrees);
-            spawnPosition.y = GetTerrainHeight(spawnPosition) + 1f;
+            spawnPosition.y = GetTerrainHeight(spawnPosition);
 
             GameObject villain = Instantiate(villainPrefab, spawnPosition, Quaternion.identity);
             VillainBehavior villainBehavior = villain.GetComponent<VillainBehavior>();
