@@ -6876,6 +6876,7 @@ MonoBehaviour:
   maxHealth: 5
   attackCooldown: 1
   coinsOnDeath: 3
+  coinManager: {fileID: 226640183}
 --- !u!114 &1033073722
 MonoBehaviour:
   m_ObjectHideFlags: 0
