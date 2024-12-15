@@ -6642,7 +6642,7 @@ MonoBehaviour:
   gameManager: {fileID: 2005049461}
   treeDmg: 0.5
   attackRange: 2
-  moveSpeed: 5
+  moveSpeed: 3
   maxHealth: 5
   attackCooldown: 0.1
 --- !u!114 &1033073722
