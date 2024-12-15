@@ -7,7 +7,7 @@ public class VillainSpawner : MonoBehaviour
     [SerializeField] private GameObject villainPrefab;
     // [SerializeField] private GameObject treeColliderPrefab;
     [SerializeField] private GameObject[] treeColliderPrefab;
-    [SerializeField] private int numberOfVillains = 20;
+    [SerializeField] private int numberOfVillains = 50;
     [SerializeField] private float spawnRadius = 100f;
     [SerializeField] private LayerMask terrainLayer;
     [SerializeField] private float minDistanceFromTrees = 2f;
