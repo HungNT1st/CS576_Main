@@ -12,7 +12,7 @@ public class VillainBehavior : MonoBehaviour
     [SerializeField] private float attackCooldown = 1f;
     
     private Transform currentTargetTree;
-    private int currentTreeHealth = 10;
+    private int currentTreeHealth = 20;
     private int health;
     private bool isAttacking = false;
     private VillainAnimationController animController;
