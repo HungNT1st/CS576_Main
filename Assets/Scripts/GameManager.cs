@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
-    public HealthUIManager healthUIManager;
-
     public float maxWorldHealth = 100f;
     private float currentWorldHealth;
 
@@ -56,14 +54,7 @@ public class GameManager : Singleton<GameManager>
 
     private void UpdateHealthUI()
     {
-        if (healthUIManager != null)
-        {
-            healthUIManager.SetWorldHealth(currentWorldHealth);
-            healthUIManager.SetPlayerHealth(currentPlayerHealth);
-        }
-        else
-        {
-            Debug.LogWarning("No HealthUIManager assigned to GameManager!");
-        }
+        HUD.Instance.SetPlayerHealth((float)(currentPlayerHealth/ maxPlayerHealth));
+        HUD.Instance.SetEnvironmentHealth((float)(currentWorldHealth / maxWorldHealth));
     }
 }
