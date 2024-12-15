@@ -3,12 +3,15 @@ using UnityEngine;
 public class FightVillian : MonoBehaviour
 {
     public Animator handAnimator;
+    
+    public QuestionMenuScript QuestionScript;
     public float detectionRadius = 3.5f;
     public string villianTag = "Villain";
     private bool drawHitbox = false;
     private float hitboxDuration = 1f;
     private float hitboxTimer = 0f;
     private bool fightStarted = false;
+
     
     public GameObject QuestionMenu;
 
@@ -66,6 +69,7 @@ public class FightVillian : MonoBehaviour
             if (collider.gameObject.CompareTag(villianTag))
             {
                 fightStarted = true;
+                QuestionScript.villain = collider.gameObject; 
                 break;
             }
         }

@@ -5495,6 +5495,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fightVillian: {fileID: 1846070697}
+  villain: {fileID: 0}
 --- !u!1001 &301975747
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8571,6 +8572,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   handAnimator: {fileID: 2042469418}
+  QuestionScript: {fileID: 299767874}
   detectionRadius: 2
   villianTag: Villain
   QuestionMenu: {fileID: 299767871}

@@ -1,11 +1,142 @@
+// using UnityEngine;
+// using UnityEngine.UIElements;   
+// using System.Collections;
+
+// public class QuestionMenuScript : MonoBehaviour
+// {
+//     public FightVillian fightVillian;
+
+//     private Label headerLabel;
+//     private Button optionA;
+//     private Button optionB;
+//     private Button optionC;
+//     private Button optionD;
+
+//     private int correctAnswer;
+//     private bool questionAnswered = false;
+
+//     private UIDocument uiDocument;
+
+//     void Awake()
+//     {
+//         uiDocument = GetComponent<UIDocument>();
+//     }
+
+//     void OnEnable()
+//     {
+//         var root = uiDocument.rootVisualElement;
+
+//         headerLabel = root.Q<Label>("HeaderLabel");
+//         optionA     = root.Q<Button>("OptionA");
+//         optionB     = root.Q<Button>("OptionB");
+//         optionC     = root.Q<Button>("OptionC");
+//         optionD     = root.Q<Button>("OptionD");
+
+//         GenerateQuestion();
+
+//         optionA.clicked += () => OnOptionSelected(optionA);
+//         optionB.clicked += () => OnOptionSelected(optionB);
+//         optionC.clicked += () => OnOptionSelected(optionC);
+//         optionD.clicked += () => OnOptionSelected(optionD);
+
+//         questionAnswered = false;
+//     }
+
+//     void OnDisable()
+//     {
+//         if (optionA != null) optionA.clicked -= () => OnOptionSelected(optionA);
+//         if (optionB != null) optionB.clicked -= () => OnOptionSelected(optionB);
+//         if (optionC != null) optionC.clicked -= () => OnOptionSelected(optionC);
+//         if (optionD != null) optionD.clicked -= () => OnOptionSelected(optionD);
+//     }
+
+//     private void GenerateQuestion()
+//     {
+//         int a = Random.Range(1, 11);
+//         int b = Random.Range(1, 11);
+//         correctAnswer = a + b;
+
+//         headerLabel.text = $"What is {a} + {b}?";
+//         headerLabel.style.color = new StyleColor(Color.white); 
+
+//         int[] answers = new int[4];
+//         int correctIndex = Random.Range(0, 4);
+
+//         for (int i = 0; i < answers.Length; i++)
+//         {
+//             if (i == correctIndex)
+//             {
+//                 answers[i] = correctAnswer;
+//             }
+//             else
+//             {
+//                 int distractor;
+//                 do
+//                 {
+//                     distractor = Random.Range(1, 21); 
+//                 } while (distractor == correctAnswer);
+//                 answers[i] = distractor;
+//             }
+//         }
+
+//         optionA.text = answers[0].ToString();
+//         optionB.text = answers[1].ToString();
+//         optionC.text = answers[2].ToString();
+//         optionD.text = answers[3].ToString();
+//     }
+
+//     private void OnOptionSelected(Button selectedButton)
+//     {
+//         if (questionAnswered) return;  
+//         questionAnswered = true;
+
+//         int selectedValue = int.Parse(selectedButton.text);
+
+//         if (selectedValue == correctAnswer)
+//         {
+//             headerLabel.text = "CORRECT";
+//             headerLabel.style.color = new StyleColor(Color.green);
+//         }
+//         else
+//         {
+//             headerLabel.text = "WRONG";
+//             headerLabel.style.color = new StyleColor(Color.red);
+//         }
+
+//         StartCoroutine(EndQuestionAfterDelay(2f));
+//     }
+
+//     private IEnumerator EndQuestionAfterDelay(float delay)
+//     {
+//         yield return new WaitForSecondsRealtime(delay);
+
+//         gameObject.SetActive(false);
+
+//         if (fightVillian != null)
+//         {
+//             fightVillian.CloseQuestionMenu();
+//         }
+//         else
+//         {
+//             Debug.LogWarning("No FightVillian reference found!");
+//         }
+//     }
+// }
+
+
+
 using UnityEngine;
 using UnityEngine.UIElements;   
 using System.Collections;
 
 public class QuestionMenuScript : MonoBehaviour
 {
-    public FightVillian fightVillian;
-
+    [Header("References")]
+    public FightVillian fightVillian;    
+    public GameObject villain;           
+    
+    private UIDocument uiDocument;
+    
     private Label headerLabel;
     private Button optionA;
     private Button optionB;
@@ -14,8 +145,6 @@ public class QuestionMenuScript : MonoBehaviour
 
     private int correctAnswer;
     private bool questionAnswered = false;
-
-    private UIDocument uiDocument;
 
     void Awake()
     {
@@ -57,7 +186,7 @@ public class QuestionMenuScript : MonoBehaviour
         correctAnswer = a + b;
 
         headerLabel.text = $"What is {a} + {b}?";
-        headerLabel.style.color = new StyleColor(Color.white); 
+        headerLabel.style.color = new StyleColor(Color.white);
 
         int[] answers = new int[4];
         int correctIndex = Random.Range(0, 4);
@@ -73,7 +202,7 @@ public class QuestionMenuScript : MonoBehaviour
                 int distractor;
                 do
                 {
-                    distractor = Random.Range(1, 21); 
+                    distractor = Random.Range(1, 21);  
                 } while (distractor == correctAnswer);
                 answers[i] = distractor;
             }
@@ -87,7 +216,7 @@ public class QuestionMenuScript : MonoBehaviour
 
     private void OnOptionSelected(Button selectedButton)
     {
-        if (questionAnswered) return;  
+        if (questionAnswered) return;
         questionAnswered = true;
 
         int selectedValue = int.Parse(selectedButton.text);
@@ -96,11 +225,23 @@ public class QuestionMenuScript : MonoBehaviour
         {
             headerLabel.text = "CORRECT";
             headerLabel.style.color = new StyleColor(Color.green);
+
+            if (villain != null)
+            {
+                Destroy(villain);
+                Debug.Log("Win a match, remove a villain");
+            }
+            else
+            {
+                Debug.LogWarning("No villain reference assigned in the QuestionMenuScript!");
+            }
         }
         else
         {
             headerLabel.text = "WRONG";
             headerLabel.style.color = new StyleColor(Color.red);
+
+            Debug.Log("Lose a match, loss health");
         }
 
         StartCoroutine(EndQuestionAfterDelay(2f));
@@ -118,7 +259,7 @@ public class QuestionMenuScript : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("No FightVillian reference found!");
+            Debug.LogWarning("FightVillian reference is missing on the QuestionMenuScript!");
         }
     }
 }
