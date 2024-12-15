@@ -5766,7 +5766,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   villainPrefab: {fileID: 1033073718}
-  treeColliderPrefab: {fileID: 2479184009378418726, guid: b62637568d07eb141b948ab45ea8c3d4, type: 3}
+  treeColliderPrefab:
+  - {fileID: 6117071349010126079, guid: d250af4848f51154f9a2bf6a85b60ac2, type: 3}
+  - {fileID: 5935278547815300987, guid: e05ae677c7b3bc546bd36b488586fb0c, type: 3}
+  - {fileID: 2479184009378418726, guid: b62637568d07eb141b948ab45ea8c3d4, type: 3}
+  - {fileID: 7296054959696050501, guid: 367ab66e2689a8345a8fb8fd14a4f90c, type: 3}
   numberOfVillains: 20
   spawnRadius: 100
   terrainLayer:
@@ -9034,7 +9038,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8716254303641427398, guid: 31598a881a19b451aaf46ea9cc68d8b6, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

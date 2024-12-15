@@ -75,9 +75,11 @@ public class VillainBehavior : MonoBehaviour
         if (animController != null)
         {
             animController.CrossFade("AttackHor");
+            yield return new WaitForSeconds(animController.GetClipLength("AttackHor"));
         }
 
-        // Damage tree
+        // float damage = Random.Range(1f, 1.7f);
+        // currentTreeHealth -= damage;
         currentTreeHealth--;
         if (currentTreeHealth <= 0 && currentTargetTree != null)
         {
@@ -89,7 +91,7 @@ public class VillainBehavior : MonoBehaviour
             currentTargetTree = null;
         }
 
-        yield return new WaitForSeconds(attackCooldown);
+        // yield return new WaitForSeconds(attackCooldown);
         isAttacking = false;
     }
 

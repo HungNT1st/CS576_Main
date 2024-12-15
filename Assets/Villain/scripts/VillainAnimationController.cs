@@ -24,4 +24,26 @@ public class VillainAnimationController : MonoBehaviour
             curState = state;
         }
     }
+
+    public float GetClipLength(string clipName)
+
+    {
+
+        Animator animator = GetComponent<Animator>();
+
+        AnimatorClipInfo[] clipInfo = animator.GetCurrentAnimatorClipInfo(0);
+
+        foreach (AnimatorClipInfo clip in clipInfo)
+
+        {
+
+            if (clip.clip.name == clipName)
+
+                return clip.clip.length;
+
+        }
+
+        return 1f; 
+
+    }
 }

@@ -5,7 +5,8 @@ using System.Linq;
 public class VillainSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject villainPrefab;
-    [SerializeField] private GameObject treeColliderPrefab;
+    // [SerializeField] private GameObject treeColliderPrefab;
+    [SerializeField] private GameObject[] treeColliderPrefab;
     [SerializeField] private int numberOfVillains = 20;
     [SerializeField] private float spawnRadius = 100f;
     [SerializeField] private LayerMask terrainLayer;
@@ -47,23 +48,36 @@ public class VillainSpawner : MonoBehaviour
         trees = terrain.terrainData.treeInstances;
         Debug.Log($"Found {trees.Length} trees on terrain");
 
-        // Create colliders for each tree
-        for (int i = 0; i < trees.Length; i++)
+        int i = 0;
+        foreach (TreeInstance tree in trees.Where(t => t.prototypeIndex >= 0 && t.prototypeIndex <= 3))
         {
-            GameObject treeCollider = Instantiate(treeColliderPrefab);
-            
-            // Calculate world position of the tree
-            Vector3 treePosition = Vector3.Scale(trees[i].position, terrain.terrainData.size) + terrain.transform.position;
-            treeCollider.transform.position = treePosition;
-            treeCollider.transform.SetParent(transform);
-            treeCollider.tag = "Tree"; // Set the tag for the collider
-            
-            // Store tree index in the collider
+            Vector3 treePosition = Vector3.Scale(tree.position, terrain.terrainData.size) + terrain.transform.position;
+            GameObject treeCollider = Instantiate(treeColliderPrefab[tree.prototypeIndex], treePosition, Quaternion.identity);
+            treeCollider.tag = "Tree";
+
             TreeReference treeRef = treeCollider.AddComponent<TreeReference>();
             treeRef.TreeIndex = i;
-            
+
             treeColliders.Add(treeCollider);
+            i++;
         }
+        // Create colliders for each tree
+        // for (int i = 0; i < trees.Length; i++)
+        // {
+        //     GameObject treeCollider = Instantiate(treeColliderPrefab);
+            
+        //     // Calculate world position of the tree
+        //     Vector3 treePosition = Vector3.Scale(trees[i].position, terrain.terrainData.size) + terrain.transform.position;
+        //     treeCollider.transform.position = treePosition;
+        //     treeCollider.transform.SetParent(transform);
+        //     treeCollider.tag = "Tree"; // Set the tag for the collider
+            
+        //     // Store tree index in the collider
+        //     TreeReference treeRef = treeCollider.AddComponent<TreeReference>();
+        //     treeRef.TreeIndex = i;
+            
+        //     treeColliders.Add(treeCollider);
+        // }    
     }
 
     private void SpawnVillains()
@@ -86,11 +100,11 @@ public class VillainSpawner : MonoBehaviour
             float randomValue = Random.value;
             float maxRadius;
             if (randomValue < 0.5f) // 50% 
-                maxRadius = 50f;
+                maxRadius = 100f;
             else if (randomValue < 0.8f) // 30% 
-                maxRadius = 80f;
+                maxRadius = 75f;
             else // 20% 
-                maxRadius = 120f;
+                maxRadius = 150f;
 
             List<GameObject> treesInRange = availableTrees.Where(tree => 
                 Vector2.Distance(
@@ -108,7 +122,7 @@ public class VillainSpawner : MonoBehaviour
 
             // Spawn villain near the tree
             Vector3 spawnPosition = targetTree.transform.position + (Random.insideUnitSphere * minDistanceFromTrees);
-            spawnPosition.y = GetTerrainHeight(spawnPosition);
+            spawnPosition.y = GetTerrainHeight(spawnPosition) + 1f;
 
             GameObject villain = Instantiate(villainPrefab, spawnPosition, Quaternion.identity);
             VillainBehavior villainBehavior = villain.GetComponent<VillainBehavior>();
@@ -118,8 +132,10 @@ public class VillainSpawner : MonoBehaviour
             }
 
             float distanceFromPlayer = Vector3.Distance(spawnPosition, player.transform.position);
-            Debug.Log($"Spawned villain {i + 1} at distance {distanceFromPlayer:F2} from player");
+            // Debug.Log($"Spawned villain {i + 1} at distance {distanceFromPlayer:F2} from player");
         }
+
+        // For testing: teleport player to a random villain
 
         villainPrefab.SetActive(false);
     }
