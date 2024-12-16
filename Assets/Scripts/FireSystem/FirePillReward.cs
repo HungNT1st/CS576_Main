@@ -12,7 +12,7 @@ public class FirePillReward : MonoBehaviour
     [SerializeField] private PillData redPill;
     [SerializeField] private PillData bluePill;
     [SerializeField] private float spawnHeight = 0.5f;
-    [SerializeField] private ParticleSystem spawnEffect;
+    //[SerializeField] private ParticleSystem spawnEffect;
 
     public void SpawnReward()
     {
@@ -40,10 +40,10 @@ public class FirePillReward : MonoBehaviour
             Vector3 spawnPosition = player.transform.position + Vector3.up * spawnHeight;
             GameObject spawnedPill = Instantiate(pillToSpawn, spawnPosition, Quaternion.identity);
             
-            if (spawnEffect != null)
-            {
-                Instantiate(spawnEffect, spawnPosition, Quaternion.identity);
-            }
+            // if (spawnEffect != null)
+            // {
+            //     Instantiate(spawnEffect, spawnPosition, Quaternion.identity);
+            // }
         }
     }
 } 
