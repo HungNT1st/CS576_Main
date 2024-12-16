@@ -24,7 +24,8 @@
     - Contributed to writing player instruction in main menu.
 4. Tung Ngo
 5. Tung Nguyen
-    - Created and edited pills and items prefabs for use in the game.
-    - Edited fire prefabs to improve functionality and visual effects.
-    - Wrote the water spray effect script using the Unity Particle System to simulate realistic water behavior.
-    - Assisted with debugging issues related to the spawning of pills, fire, and the fire extinguishment mechanics to ensure smooth gameplay.
+    - Created and edited pills and items prefabs: Designed prefabs for pills and items, adding collider boxes for interaction and detection.
+    - Edited fire prefabs: Edited fire prefabs' colliders for interaction and helped debug their spawn behavior and extinguishment mechanics.
+    - Implemented water spray effect: Created the water spray effect using Unity's Particle System and scripted its interaction with fire prefabs for realistic gameplay.
+    - Assisted debugging: Helped debug key features, including issues with spawning pills, fire objects, player health loss when in fire, and extinguishing logic.
+    - Created initial terrain prototype: Designed an early terrain version for initial testing, which was later replaced with the final terrain.
