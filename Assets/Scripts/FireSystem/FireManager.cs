@@ -34,6 +34,7 @@ public class FireManager : MonoBehaviour
         pillReward = GetComponent<FirePillReward>();
         gameManager = FindObjectOfType<GameManager>();
         parentTree = transform.parent;
+        coinManager = CoinManager.Instance;
         
         if (gameManager == null)
         {
