@@ -27,6 +27,7 @@ public class CoinManager : MonoBehaviour
 
     public void AddCoins(int amount)
     {
+        AudioManager.Instance.PlayAudioGroup("COIN COLLECT");
         coins += amount;
         UpdateCoinDisplay();
     }
