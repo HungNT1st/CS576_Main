@@ -6836,10 +6836,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: HUD
       objectReference: {fileID: 0}
-    - target: {fileID: 6328699869328271722, guid: 37bcfae7e388e374a80140b7a6954151, type: 3}
-      propertyPath: m_text
-      value: T     to plant tree (2 coins)
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9585,6 +9581,75 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1033073724}
   m_SourcePrefab: {fileID: 100100000, guid: 31598a881a19b451aaf46ea9cc68d8b6, type: 3}
+--- !u!1001 &7741049404359894927
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 660516944641971308, guid: 328dd76a138231244bb246083793bcb7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 560.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 660516944641971308, guid: 328dd76a138231244bb246083793bcb7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 9.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 660516944641971308, guid: 328dd76a138231244bb246083793bcb7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 534.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1557705781545282180, guid: 328dd76a138231244bb246083793bcb7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1557705781545282180, guid: 328dd76a138231244bb246083793bcb7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1557705781545282180, guid: 328dd76a138231244bb246083793bcb7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1557705781545282180, guid: 328dd76a138231244bb246083793bcb7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1557705781545282180, guid: 328dd76a138231244bb246083793bcb7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1557705781545282180, guid: 328dd76a138231244bb246083793bcb7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1557705781545282180, guid: 328dd76a138231244bb246083793bcb7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1557705781545282180, guid: 328dd76a138231244bb246083793bcb7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1557705781545282180, guid: 328dd76a138231244bb246083793bcb7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1557705781545282180, guid: 328dd76a138231244bb246083793bcb7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1960590487193535178, guid: 328dd76a138231244bb246083793bcb7, type: 3}
+      propertyPath: m_Name
+      value: AudioManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 328dd76a138231244bb246083793bcb7, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -9609,3 +9674,4 @@ SceneRoots:
   - {fileID: 1075213412}
   - {fileID: 2005049462}
   - {fileID: 1441668242}
+  - {fileID: 7741049404359894927}
