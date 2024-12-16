@@ -1,5 +1,39 @@
-// FEATURE 
+// GAME
+    - Ideas: 
+        + New idea of an RPG game educating players about environmental problems such as forest fire, villains cutting down trees, and garbage littering,... 
+        + Encourage players to protect the environment through actions like putting down forest fires, cleaning up trash, stopping people from damaging the forest, and preserving the habitat of wild animals. 
 
+    - Key elements:
+        + Main character: has walking, running, jumping, attacking and watering animations and can interact very well with surrounding elements like pets and pills.
+        + Educational components: putting down forest fire, stopping villains from damaging the environment, collecting trash, adopt wild life animals.
+        + Obstacles: Forest fire, red pills with potential to decrease health.
+        + Enemies: Villains cutting down trees.
+        + Items: Blue pills to increase speed, Yellow pills to decrease speed, Red pills to either increase or decrease speed with 50% chance each.
+
+    - Mechanics:
+        + Implement collision and interaction between different components well.
+        + Shadow of game components like trees, pets and villains.
+
+    - AI:
+        + Pets like rabbit and monkey automatically follows main character.
+        + Villains automatically attack trees and run to next trees to continue attacking after destroying their current corresponding tree.
+        + Villains and forest fires deal more damage to the trees as the world health increases to significantly increase the difficulty of the game (much harder to win).
+        + Automatically generate questions from AI models like ChatGPT when fighting villains to educate about environmental preservation.
+
+    - Physics:
+        + Implemented our own physics and used many different animations for main character, pets and villains.
+        + Implemented visual and sound effects on interactions between different components.
+
+    - User interface:
+        + Implemented main menu with how to play tutorial, as well as clear in-game instructions for players.
+        + Implemented win, lose, pause and retry menus.
+
+    - Performance:
+        + Our game runs very smoothly without lagging or framerate issues.
+
+    - Aesthetics and Sound Effects:
+        + Used online assets and art components in game to significantly increase the visual effects of our game.
+        + Implemented sound effects of player actions, coin actions, planting trees, putting down fire, planting trees, spawning pets, taking down villains.
 
 // TEAM
 1. Hung Nguyen
