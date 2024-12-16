@@ -13,6 +13,20 @@
     - Overall, write ConversationStarter.cs, FightVillian.cs, FollowPlayer.cs, GameManager.cs, HealthUIManager.cs, MainMenu.cs, OpenAIChatGPT.cs, PetsAddingHandler.cs, QuestionScript.cs, StartTerrain.cs, ResumeGame.cs, CanvasController.cs 
     and edit HUD.cs, VillainSpawner.cs, VillainAnimationController.cs
 2. Tung Le
+    - Wrote scripts to handle object random spawning on terrain around players in RandomTerrainSpawner.cs and implemented trash collecting system in Trash.cs.
+    - Wrote script to handle HUD system with programmatic animations.
+    - Wrote scripts to handle tree planting in TreePlantingHandler.cs.
+    - Wrote scripts to handle in-game and menu audio management, including finding sfx, music for entities.
+    - Implemented environment visual changes based on environment health in GameManager.cs.
+    - Contributed to finding and importing assets such as player model, trash model, and particle systems.
+    - Contributed to player animation state controller and animation.
+    - Created text pop-up system to communicate with player.
+    - Created Cinemachine camera work to follow player.
+    - Responsible for creating and polishing menu and in-game UI and visual elements.
+    - Set up terrain and camera work for main menu.
+    - Contributed to debugging fire system, coin manager, scene loading.
+    - Contributed to debugging referencing errors. 
+
 3. Chien Nguyen
     - Wrote scripts to randomly spawn villains throughout the terrain to attack the trees in VillainSpawner.cs and VillainBehavior.cs with online assets from Unity Store for villain model and animations.
     - Wrote script to handle the villian's attack and running animation in VillainAnimationController.cs.
