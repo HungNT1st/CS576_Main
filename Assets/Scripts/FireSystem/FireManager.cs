@@ -129,6 +129,7 @@ public class FireManager : MonoBehaviour
     private void ExtinguishFire()
     {
         isExtinguished = true;
+        Debug.Log("Fire extinguished - Checking for pill reward");
 
         // Stop fire particles
         if (fireParticleSystem != null)
@@ -141,7 +142,12 @@ public class FireManager : MonoBehaviour
         // Spawn reward if available
         if (pillReward != null)
         {
+            Debug.Log("FirePillReward component found - Calling SpawnReward()");
             pillReward.SpawnReward();
+        }
+        else
+        {
+            Debug.LogWarning("No FirePillReward component found on fire object!");
         }
 
         // Destroy the fire object after a delay
