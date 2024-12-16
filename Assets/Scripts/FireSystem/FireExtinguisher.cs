@@ -15,6 +15,7 @@ public class FireExtinguisher : MonoBehaviour
     void Start()
     {
         StopSpraying();
+        waterSprayEffect.Stop();
     }
     void Update()
     {
@@ -35,7 +36,7 @@ public class FireExtinguisher : MonoBehaviour
     private void StartSpraying()
     {
         isSpraying = true;
-        AudioManager.Instance.PlayAudioGroup("WATER");
+        //AudioManager.Instance.PlayAudioGroup("WATER");
         if (waterSprayEffect != null)
         {
             waterSprayEffect.Play();
@@ -45,7 +46,7 @@ public class FireExtinguisher : MonoBehaviour
     private void StopSpraying()
     {
         isSpraying = false;
-        AudioManager.Instance.StopAudioGroup("WATER");
+        //AudioManager.Instance.StopAudioGroup("WATER");
         if (waterSprayEffect != null)
         {
             waterSprayEffect.Stop();
