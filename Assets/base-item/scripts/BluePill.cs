@@ -18,6 +18,7 @@ public class BluePill : MonoBehaviour
             // Apply speed boost
             player.walkSpeed *= speedMultiplier;
             player.sprintSpeed *= speedMultiplier;
+            HUD.Instance.PopUpText("Took a pill... Walk faster for 5s", 2);
 
             // Reset after duration
             StartCoroutine(ResetSpeedAfterDelay(player, originalWalkSpeed, originalSprintSpeed));

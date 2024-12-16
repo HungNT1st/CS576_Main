@@ -13,6 +13,7 @@ public class RedPill : MonoBehaviour
             // Increase sprint duration temporarily
             float originalSprintDuration = player.sprintDuration;
             player.sprintDuration += healthBoost;
+            HUD.Instance.PopUpText("Took a pill... Increase health", 2);
 
             // Reset after duration
             StartCoroutine(ResetHealthAfterDelay(player, originalSprintDuration));
