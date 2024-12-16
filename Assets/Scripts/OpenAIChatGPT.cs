@@ -5,8 +5,15 @@ using Newtonsoft.Json;
 
 public class OpenAIChatGPT : MonoBehaviour
 {
-    private string apiKey = "Your API Key";
+    private string apiKey = "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";
     private string apiUrl = "https://api.openai.com/v1/chat/completions";
+
+    private void Start()
+    {
+        string path = System.IO.Path.Combine(Application.dataPath, "Scripts", "configK_e_y.txt");
+        apiKey = System.IO.File.ReadAllText(path).Trim().ToString();
+        Debug.Log("API Key: " + apiKey);
+    }
 
     public IEnumerator GetChatGPTResponse(string prompt, System.Action<string> callback)
     {
@@ -15,7 +22,7 @@ public class OpenAIChatGPT : MonoBehaviour
             model = "gpt-4o-mini",
             messages = new[]
             {
-                new { role = "system", content = "You must only respond with a valid JSON object. Do not include any plain text or explanations outside of the JSON schema." },
+                new { role = "system", content = "You must only respond with a valid JSON schema. Do not include any plain text or explanations outside of the JSON schema." },
                 new { role = "user", content = prompt }
             },
             max_tokens = 300

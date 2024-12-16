@@ -100,6 +100,12 @@ public class QuestionMenuScript : MonoBehaviour
     void OnResponseReceived(string response)
     {
         Debug.Log("ChatGPT Response: " + response);
+        int startIndex = response.IndexOf('{');
+        int endIndex = response.LastIndexOf('}');
+        if (startIndex != -1 && endIndex != -1) {
+            response = response.Substring(startIndex, endIndex - startIndex + 1);
+        }
+        Debug.Log("ChatGPT Response Cleaned: " + response);
         ResponseData questionData = JsonUtility.FromJson<ResponseData>(response);
 
         headerLabel.text = questionData.question;
