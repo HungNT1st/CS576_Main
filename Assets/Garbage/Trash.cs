@@ -3,6 +3,7 @@ using UnityEngine;
 [RequireComponent(typeof(Collider))]
 public class Trash : MonoBehaviour
 {
+    [SerializeField] private CoinManager coinManager;
     private void Start() {
         GetComponent<Collider>().isTrigger = true;
     }
@@ -15,7 +16,11 @@ public class Trash : MonoBehaviour
                 if (CoinManager.Instance != null) 
                 {
                     CoinManager.Instance.AddCoins(1);
+                    Debug.Log("Added 1 coin");
                 }
+                // if (coinManager != null) {
+                //     coinManager.AddCoins(1);
+                // }
             };
         }
     }

@@ -23,7 +23,12 @@ public class TreePlantingHandler : MonoBehaviour
 
         Transform tree = Instantiate(treePrefab, spawnPos, Quaternion.identity);
         tree.DOMoveY(spawnPos.y + TREEHEIGHT, 5f);
-        AudioManager.Instance.PlayAudioGroup("PLANT TREE");
+        if (AudioManager.Instance != null) {
+            AudioManager.Instance.PlayAudioGroup("PLANT TREE");
+        }
+        else {
+            Debug.LogWarning("AudioManager.Instance is null when trying to play plant tree sound");
+        }
 
         AddTreeToTerrain(spawnPos);
         GameManager.Instance.HealWorld(20);
