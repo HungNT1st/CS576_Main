@@ -23,6 +23,14 @@
     - Implemented using coins collected to plant trees and spawn pets in TreePlantingHandler.cs and PetsAddingHandler.cs.
     - Contributed to writing player instruction in main menu.
 4. Tung Ngo
+    - Created fire system: Implemented fire spawning mechanics and fire spread behavior across the terrain.
+    - Developed fire extinguishing mechanics: Created water spray system and fire-water interaction logic.
+    - Implemented health system: Created player health mechanics that responds to environmental hazards like fire.
+    - Created pill/health pickup system: Designed and implemented collectible health items for player recovery.
+    - Wrote FireManager.cs to handle fire spawning, spread, and extinction mechanics.
+    - Wrote HealthSystem.cs to manage player health and damage interactions.
+    - Assisted in debugging environment interactions and player mechanics.
+    - Helped balance gameplay mechanics for fire spread and damage systems.
 5. Tung Nguyen
     - Created and edited pills and items prefabs: Designed prefabs for pills and items, adding collider boxes for interaction and detection.
     - Edited fire prefabs: Edited fire prefabs' colliders for interaction and helped debug their spawn behavior and extinguishment mechanics.
