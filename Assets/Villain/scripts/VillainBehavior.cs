@@ -25,6 +25,7 @@ public class VillainBehavior : MonoBehaviour
     {
         health = maxHealth;
         animController = GetComponent<VillainAnimationController>();
+        currentTreeHealth = 20 - (int)(gameManager.GetCurrentWorldHealth() - 30) / 10;
     }
 
     public void Initialize(Transform initialTree)
@@ -145,7 +146,7 @@ public class VillainBehavior : MonoBehaviour
         currentTargetTree = closestTree;
         if (closestTree != null)
         {
-            currentTreeHealth = 10; // Reset health for new tree
+            currentTreeHealth = 20 - (int)(gameManager.GetCurrentWorldHealth() - 30) / 10; // Reset health for new tree
         }
     }
 

@@ -37,6 +37,10 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+    public float GetCurrentWorldHealth() {
+        return currentWorldHealth;
+    }
+
     public void HealWorld(float amount)
     {
         currentWorldHealth = Mathf.Clamp(currentWorldHealth + amount, 0f, maxWorldHealth);
