@@ -5456,7 +5456,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &299767872
 Transform:
   m_ObjectHideFlags: 0
@@ -7512,7 +7512,7 @@ MonoBehaviour:
   - itemPrefab: {fileID: 7120382088629031720, guid: d15ff1e0b5163044faec84c42876f112, type: 3}
     spawnWeight: 1
   numberOfItemsToSpawn: 100
-  spawnAreaSize: {x: 1000, y: 1000}
+  spawnRadius: 100
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
