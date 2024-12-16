@@ -17,6 +17,8 @@ public class HUD : Singleton<HUD>
     [Header("Screens")]
     [SerializeField] GameObject winScreen;
     [SerializeField] GameObject loseScreen;
+    [SerializeField] GameObject pauseScreen;
+    [SerializeField] FirstPersonController firstPersonController;
 
     private void Start() {
         StopSmallTaskLoading();
@@ -24,7 +26,16 @@ public class HUD : Singleton<HUD>
         loseScreen.SetActive(false);
     }
     private void Update() {
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            Time.timeScale = Time.timeScale == 0f ? 1f : 0f;
+            pauseScreen.SetActive(!pauseScreen.activeSelf);
+            Cursor.lockState = Time.timeScale == 0f ? CursorLockMode.None : CursorLockMode.Locked;
 
+            
+            firstPersonController.playerCanMove = (!firstPersonController.playerCanMove);
+            firstPersonController.cameraCanMove = (!firstPersonController.cameraCanMove);   
+        }
+        
     }
     public void GameOver(bool isWin) {
         Time.timeScale = 0f;
