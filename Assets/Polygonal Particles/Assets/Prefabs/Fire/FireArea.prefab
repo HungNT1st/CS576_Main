@@ -9698,8 +9698,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 5, y: 5, z: 7}
-  m_Center: {x: 0.042187452, y: -0.20480049, z: 2.5941358}
+  m_Size: {x: 3, y: 3, z: 7}
+  m_Center: {x: 0, y: 0, z: 3}
 --- !u!114 &5328276195910790932
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9717,4 +9717,5 @@ MonoBehaviour:
   damageAmount: 10
   damageInterval: 0.5
   waterNeeded: 3
+  treeDestructionTime: 20
   steamEffect: {fileID: 198311759824307422}
