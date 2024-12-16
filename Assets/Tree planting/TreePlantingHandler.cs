@@ -23,6 +23,7 @@ public class TreePlantingHandler : MonoBehaviour
 
         Transform tree = Instantiate(treePrefab, spawnPos, Quaternion.identity);
         tree.DOMoveY(spawnPos.y + TREEHEIGHT, 5f);
+        AudioManager.Instance.PlayAudioGroup("PLANT TREE");
 
         AddTreeToTerrain(spawnPos);
         GameManager.Instance.HealWorld(20);
@@ -56,8 +57,10 @@ public class TreePlantingHandler : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.T))
         {
             if (coinManager != null && coinManager.GetCoins() >= 2) {
-                HUD.Instance.SetSmallTaskLoading("Planting", 5).onComplete += SpawnTreeAtPlayerPosition;
-                coinManager.RemoveCoins(2);
+                HUD.Instance.SetSmallTaskLoading("Planting", 4).onComplete += () => {
+                    SpawnTreeAtPlayerPosition();
+                    coinManager.RemoveCoins(2);
+                };
             }
             
         }
