@@ -61,6 +61,7 @@ public class FireManager : MonoBehaviour
         if (isExtinguished)
         {
             Debug.Log("Fire is extinguished, no damage");
+            HUD.Instance.PopUpText("Fire is extinguished, no damage", 2);
             return;
         }
 

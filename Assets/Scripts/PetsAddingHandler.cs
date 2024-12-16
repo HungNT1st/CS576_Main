@@ -42,7 +42,11 @@ public class PetsAddingHandler : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F))
         {
-            if (coinManager != null && coinManager.GetCoins() >= 5)
+            if (coinManager != null && coinManager.GetCoins() < 5) {
+                HUD.Instance.PopUpText("Not enough coin to spawn pet", 2);
+                return;
+            }
+            else
             {
                 HUD.Instance.SetSmallTaskLoading("Spawning Pets", 5).onComplete += () =>
                 {

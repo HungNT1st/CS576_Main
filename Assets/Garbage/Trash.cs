@@ -9,18 +9,15 @@ public class Trash : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
+        AudioManager.Instance.PlayAudioGroup("TRASH COLLECT");
         if (other.CompareTag("Player")) {
             HUD.Instance.SetSmallTaskLoading("Cleaning up trash", 4).onComplete += () => {
                 Destroy(gameObject);
                 GameManager.Instance.HealWorld(5);
-                if (CoinManager.Instance != null) 
-                {
-                    CoinManager.Instance.AddCoins(1);
-                    Debug.Log("Added 1 coin");
+                if (coinManager != null) {
+                    coinManager.AddCoins(1);
+                    HUD.Instance.PopUpText("Trash collected successfully!", 2);
                 }
-                // if (coinManager != null) {
-                //     coinManager.AddCoins(1);
-                // }
             };
         }
     }

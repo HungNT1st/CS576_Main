@@ -66,6 +66,7 @@ public class FireExtinguisher : MonoBehaviour
             if (fire != null)
             {
                 fire.ApplyWater(waterAmount * Time.deltaTime);
+                HUD.Instance.PopUpText("Extinguishing Fire...", 2);
                 Debug.Log($"Applying water to fire: {waterAmount * Time.deltaTime}"); // Debug log
             }
         }
