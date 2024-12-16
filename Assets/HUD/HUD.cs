@@ -28,6 +28,7 @@ public class HUD : Singleton<HUD>
     }
     public void GameOver(bool isWin) {
         Time.timeScale = 0f;
+        Cursor.lockState = CursorLockMode.None;
         if (isWin) {
             winScreen.SetActive(true);
         }
