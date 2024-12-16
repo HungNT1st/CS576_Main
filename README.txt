@@ -1,3 +1,7 @@
+// FEATURE 
+
+
+// TEAM
 1. Hung Nguyen
     - Create the terrain using some online assets from Unity Assets store for trees, skybox, ...
     - Create NavMesh for the terrain. 
