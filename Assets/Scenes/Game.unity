@@ -8825,7 +8825,7 @@ MonoBehaviour:
     sounds:
     - clip: {fileID: 8300000, guid: 32a728b9604ca9740965d29b57287d69, type: 3}
       loop: 0
-      volume: 0.2
+      volume: 0.01
   - name: PLANT TREE
     source: {fileID: 0}
     sounds:

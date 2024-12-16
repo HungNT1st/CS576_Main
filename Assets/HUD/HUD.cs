@@ -8,17 +8,32 @@ using UnityEngine.UI;
 
 public class HUD : Singleton<HUD>
 {
+    [Header("Health")]
     [SerializeField] Image environmentHealth;
     [SerializeField] Image playerHealth;
     [Header("Small task")]
     [SerializeField] TextMeshProUGUI smallTaskTMP;
     [SerializeField] Image smallTaskLoading;
+    [Header("Screens")]
+    [SerializeField] GameObject winScreen;
+    [SerializeField] GameObject loseScreen;
 
     private void Start() {
         StopSmallTaskLoading();
+        winScreen.SetActive(false);
+        loseScreen.SetActive(false);
     }
     private void Update() {
 
+    }
+    public void GameOver(bool isWin) {
+        Time.timeScale = 0f;
+        if (isWin) {
+            winScreen.SetActive(true);
+        }
+        else {
+            loseScreen.SetActive(true);
+        }
     }
 
     public void SetEnvironmentHealth(float val) {

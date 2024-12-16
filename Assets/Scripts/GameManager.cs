@@ -33,7 +33,7 @@ public class GameManager : Singleton<GameManager>
         if (currentWorldHealth <= 0)
         {
             Debug.Log("The world has died!");
-            Time.timeScale = 0f;
+            HUD.Instance.GameOver(false);
         }
     }
 
@@ -42,7 +42,9 @@ public class GameManager : Singleton<GameManager>
         currentWorldHealth = Mathf.Clamp(currentWorldHealth + amount, 0f, maxWorldHealth);
         UpdateHealthUI();
         UpdateWorldPostProcessing();
-
+        if (currentWorldHealth >= maxWorldHealth) {
+            HUD.Instance.GameOver(true);
+        }
     }
 
     public void DamagePlayer(float amount)
