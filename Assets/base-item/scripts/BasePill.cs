@@ -3,7 +3,7 @@ using UnityEngine;
 public abstract class BasePill : BaseItem
 {
     [Header("Pill Settings")]
-    [SerializeField] protected float duration = 10f;
+    [SerializeField] private float duration = 5f;
     [SerializeField] protected ParticleSystem consumeEffect;
     
     protected bool isActive = false;

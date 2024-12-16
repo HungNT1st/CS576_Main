@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class RedPill : MonoBehaviour
 {
-    [SerializeField] private float healthBoost = 25f;
+    [SerializeField] private float healthChange = 25f;
     [SerializeField] private float duration = 5f;
 
     private void OnTriggerEnter(Collider other)
@@ -10,27 +10,24 @@ public class RedPill : MonoBehaviour
         FirstPersonController player = other.GetComponent<FirstPersonController>();
         if (player != null)
         {
-            // Increase sprint duration temporarily
-            float originalSprintDuration = player.sprintDuration;
-            player.sprintDuration += healthBoost;
-            HUD.Instance.PopUpText("Took a pill... Increase health", 2);
-            AudioManager.Instance.PlayAudioGroup("PILL COLLECT");
+            // 50-50 chance to heal or damage
+            bool isHealing = Random.value > 0.5f;
+            
+            if (isHealing)
+            {
+                GameManager.Instance.HealPlayer(healthChange);
+                HUD.Instance.PopUpText("Took a pill... Health increased!", 2);
+            }
+            else
+            {
+                GameManager.Instance.DamagePlayer(healthChange);
+                HUD.Instance.PopUpText("Took a pill... Health decreased!", 2);
+            }
 
-            // Reset after duration
-            StartCoroutine(ResetHealthAfterDelay(player, originalSprintDuration));
+            AudioManager.Instance.PlayAudioGroup("PILL COLLECT");
 
             // Destroy the pill
             Destroy(gameObject);
-        }
-    }
-
-    private System.Collections.IEnumerator ResetHealthAfterDelay(FirstPersonController player, float originalSprintDuration)
-    {
-        yield return new WaitForSeconds(duration);
-        
-        if (player != null)
-        {
-            player.sprintDuration = originalSprintDuration;
         }
     }
 } 
