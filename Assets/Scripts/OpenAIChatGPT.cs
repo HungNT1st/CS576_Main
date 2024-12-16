@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 
 public class OpenAIChatGPT : MonoBehaviour
 {
-    private string apiKey = "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"; 
+    private string apiKey = "Your API Key"; 
     private string apiUrl = "https://api.openai.com/v1/chat/completions";
 
     public IEnumerator GetChatGPTResponse(string prompt, System.Action<string> callback)
