@@ -16,3 +16,7 @@
 3. Chien Nguyen
 4. Tung Ngo
 5. Tung Nguyen
+    - Created and edited pills and items prefabs for use in the game.
+    - Edited fire prefabs to improve functionality and visual effects.
+    - Wrote the water spray effect script using the Unity Particle System to simulate realistic water behavior.
+    - Assisted with debugging issues related to the spawning of pills, fire, and the fire extinguishment mechanics to ensure smooth gameplay.
