@@ -16,6 +16,10 @@ public class FirePillReward : MonoBehaviour
 
     public void SpawnReward()
     {
+        // Find the player
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player == null) return;
+
         float totalChance = redPill.spawnChance + bluePill.spawnChance;
         float randomValue = Random.Range(0f, totalChance);
 
@@ -32,7 +36,8 @@ public class FirePillReward : MonoBehaviour
 
         if (pillToSpawn != null)
         {
-            Vector3 spawnPosition = transform.position + Vector3.up * spawnHeight;
+            // Spawn at player's position
+            Vector3 spawnPosition = player.transform.position + Vector3.up * spawnHeight;
             GameObject spawnedPill = Instantiate(pillToSpawn, spawnPosition, Quaternion.identity);
             
             if (spawnEffect != null)

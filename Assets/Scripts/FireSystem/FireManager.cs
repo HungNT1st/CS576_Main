@@ -9,7 +9,7 @@ public class FireManager : MonoBehaviour
     [SerializeField] private float damageAmount = 10f;
     [SerializeField] private float damageInterval = 0.5f;
     [SerializeField] private float waterNeeded = 3f;
-    [SerializeField] private float treeDestructionTime = 20f;
+    [SerializeField] private float treeDestructionTime = 40f;
     
     [Header("Effects")]
     [SerializeField] private ParticleSystem steamEffect;
