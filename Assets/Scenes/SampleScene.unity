@@ -7619,6 +7619,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetTerrain: {fileID: 1175037231}
   treePrefab: {fileID: 6419187236850804161, guid: e05ae677c7b3bc546bd36b488586fb0c, type: 3}
+  coinManager: {fileID: 226640183}
 --- !u!114 &1441668244
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7683,17 +7684,6 @@ MonoBehaviour:
   damageInterval: 0.5
   waterNeeded: 3
   steamEffect: {fileID: 869819951}
-  fireParticleSystem: {fileID: 1452960099}
-  extinguishDelay: 3
-  damageAmount: 10
-  damageInterval: 0.5
-  waterNeeded: 3
-  steamEffect: {fileID: 869819950}
---- !u!198 &1452960099 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 198137211002769400, guid: bbd1860d44f6c7546aad605f3666475f, type: 3}
-  m_PrefabInstance: {fileID: 483059230}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1484754952
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,6 +7,7 @@ public class TreePlantingHandler : MonoBehaviour
     [SerializeField] Terrain targetTerrain;
 
     [SerializeField] Transform treePrefab;
+    [SerializeField] private CoinManager coinManager;
 
     private Transform playerTransform;
 
@@ -54,7 +55,11 @@ public class TreePlantingHandler : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.T))
         {
-            HUD.Instance.SetSmallTaskLoading("Planting", 5).onComplete += SpawnTreeAtPlayerPosition;
+            if (coinManager != null && coinManager.GetCoins() >= 2) {
+                HUD.Instance.SetSmallTaskLoading("Planting", 5).onComplete += SpawnTreeAtPlayerPosition;
+                coinManager.RemoveCoins(2);
+            }
+            
         }
         if (Input.GetKeyUp(KeyCode.T)) {
             HUD.Instance.StopSmallTaskLoading();
