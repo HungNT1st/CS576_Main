@@ -27,13 +27,20 @@ public class CoinManager : MonoBehaviour
 
     public void AddCoins(int amount)
     {
-        AudioManager.Instance.PlayAudioGroup("COIN COLLECT");
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayAudioGroup("COIN COLLECT");
+        }
+        else {
+        Debug.LogWarning("AudioManager.Instance is null when trying to play coin collect sound");
+        }
         coins += amount;
         UpdateCoinDisplay();
     }
 
     public void RemoveCoins(int amount)
     {
+        Debug.Log("Removed " + amount + " coins");
         coins -= amount;
         UpdateCoinDisplay();
     }
