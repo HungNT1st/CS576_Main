@@ -9,6 +9,7 @@ public class FireManager : MonoBehaviour
     [SerializeField] private float damageAmount = 10f;
     [SerializeField] private float damageInterval = 0.5f;
     [SerializeField] private float waterNeeded = 3f;
+    [SerializeField] private float treeDestructionTime = 20f;
     
     [Header("Effects")]
     [SerializeField] private ParticleSystem steamEffect;
@@ -19,6 +20,7 @@ public class FireManager : MonoBehaviour
     private float nextDamageTime = 0f;
     private float waterAccumulated = 0f;
     private GameManager gameManager;
+    private Transform parentTree;
 
     private void Start()
     {
@@ -30,6 +32,7 @@ public class FireManager : MonoBehaviour
         
         pillReward = GetComponent<FirePillReward>();
         gameManager = FindObjectOfType<GameManager>();
+        parentTree = transform.parent;
         
         if (gameManager == null)
         {
@@ -41,6 +44,9 @@ public class FireManager : MonoBehaviour
         {
             fireParticleSystem.Play();
         }
+
+        // Start the tree destruction timer
+        StartCoroutine(TreeDestructionTimer());
     }
 
     private void OnTriggerEnter(Collider other)
@@ -140,5 +146,30 @@ public class FireManager : MonoBehaviour
 
         // Destroy the fire object after a delay
         Destroy(gameObject, 2f);
+    }
+
+    private IEnumerator TreeDestructionTimer()
+    {
+        yield return new WaitForSeconds(treeDestructionTime);
+        
+        if (!isExtinguished && parentTree != null)
+        {
+            // Get the TreeReference component from the parent tree
+            TreeReference treeRef = parentTree.GetComponent<TreeReference>();
+            if (treeRef != null)
+            {
+                // Remove the tree from the terrain
+                treeRef.RemoveTree();
+                
+                // Damage the world when a tree is destroyed
+                if (gameManager != null)
+                {
+                    gameManager.DamageWorld(0.5f); // You can adjust this value as needed
+                }
+            }
+            
+            // Destroy the fire object
+            Destroy(gameObject);
+        }
     }
 } 
