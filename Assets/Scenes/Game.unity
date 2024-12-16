@@ -5449,6 +5449,7 @@ GameObject:
   - component: {fileID: 299767872}
   - component: {fileID: 299767873}
   - component: {fileID: 299767874}
+  - component: {fileID: 299767875}
   m_Layer: 0
   m_Name: QuestionMenu
   m_TagString: Untagged
@@ -5502,6 +5503,18 @@ MonoBehaviour:
   fightVillian: {fileID: 1846070697}
   gameManager: {fileID: 2005049461}
   villain: {fileID: 0}
+--- !u!114 &299767875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 299767871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3a04b68c4799b44caa882482ff74bf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &301975747
 PrefabInstance:
   m_ObjectHideFlags: 0
