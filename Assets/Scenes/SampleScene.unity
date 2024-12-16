@@ -6984,6 +6984,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HUD
       objectReference: {fileID: 0}
+    - target: {fileID: 6328699869328271722, guid: 37bcfae7e388e374a80140b7a6954151, type: 3}
+      propertyPath: m_text
+      value: T     to plant tree (2 coins)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -7683,6 +7687,7 @@ MonoBehaviour:
   damageAmount: 10
   damageInterval: 0.5
   waterNeeded: 3
+  treeDestructionTime: 20
   steamEffect: {fileID: 869819951}
 --- !u!1 &1484754952
 GameObject:
