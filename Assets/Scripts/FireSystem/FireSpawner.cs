@@ -7,7 +7,7 @@ public class FireSpawner : MonoBehaviour
     [SerializeField] private GameObject firePrefab;
     [SerializeField] private float spawnInterval = 10f;
     [SerializeField] private int maxFiresAtOnce = 3;
-    [SerializeField] private int initialFireCount = 5;
+    [SerializeField] private int initialFireCount = 10;
     [SerializeField] private float minSpawnRadius = 20f;
     [SerializeField] private float maxSpawnRadius = 50f;
     
