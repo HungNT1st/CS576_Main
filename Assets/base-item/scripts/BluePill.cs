@@ -19,6 +19,7 @@ public class BluePill : MonoBehaviour
             player.walkSpeed *= speedMultiplier;
             player.sprintSpeed *= speedMultiplier;
             HUD.Instance.PopUpText("Took a pill... Walk faster for 5s", 2);
+            AudioManager.Instance.PlayAudioGroup("PILL COLLECT");
 
             // Reset after duration
             StartCoroutine(ResetSpeedAfterDelay(player, originalWalkSpeed, originalSprintSpeed));

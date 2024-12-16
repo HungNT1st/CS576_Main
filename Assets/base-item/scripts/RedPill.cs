@@ -14,6 +14,7 @@ public class RedPill : MonoBehaviour
             float originalSprintDuration = player.sprintDuration;
             player.sprintDuration += healthBoost;
             HUD.Instance.PopUpText("Took a pill... Increase health", 2);
+            AudioManager.Instance.PlayAudioGroup("PILL COLLECT");
 
             // Reset after duration
             StartCoroutine(ResetHealthAfterDelay(player, originalSprintDuration));

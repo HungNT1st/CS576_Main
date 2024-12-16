@@ -5645,7 +5645,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 45
+      scalar: 60
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -9721,6 +9721,10 @@ MonoBehaviour:
   treeDestructionTime: 20
   coinManager: {fileID: 0}
   steamEffect: {fileID: 198311759824307422}
+  baseEmissionRate: 40
+  maxEmissionMultiplier: 2
+  baseDamageAmount: 10
+  maxDamageMultiplier: 2
 --- !u!82 &2832777693692309146
 AudioSource:
   m_ObjectHideFlags: 0

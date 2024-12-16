@@ -71,6 +71,12 @@ MonoBehaviour:
     - clip: {fileID: 8300000, guid: b398e987a9a75424cb6902795b240473, type: 3}
       loop: 0
       volume: 0.5
+  - name: PILL COLLECT
+    source: {fileID: 0}
+    sounds:
+    - clip: {fileID: 8300000, guid: f842cb4de8b0a3a4694cc0a81df82362, type: 3}
+      loop: 0
+      volume: 0.1
 --- !u!82 &584819843846769597
 AudioSource:
   m_ObjectHideFlags: 0
