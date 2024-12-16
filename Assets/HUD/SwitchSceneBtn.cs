@@ -7,8 +7,9 @@ using UnityEngine.UI;
 public class SwitchSceneBtn : MonoBehaviour
 {
     [SerializeField] string sceneName;
+    [SerializeField] Button button;
     private void Start() {
-        GetComponent<Button>().onClick.AddListener(() => {
+        button.onClick.AddListener(() => {
             DOTween.KillAll();
             SceneManager.LoadScene(sceneName);
             Time.timeScale = 1f;
