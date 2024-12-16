@@ -10,6 +10,7 @@ public class FireManager : MonoBehaviour
     [SerializeField] private float damageInterval = 0.5f;
     [SerializeField] private float waterNeeded = 3f;
     [SerializeField] private float treeDestructionTime = 40f;
+    [SerializeField] private CoinManager coinManager;
     
     [Header("Effects")]
     [SerializeField] private ParticleSystem steamEffect;
@@ -130,6 +131,10 @@ public class FireManager : MonoBehaviour
     {
         isExtinguished = true;
         Debug.Log("Fire extinguished - Checking for pill reward");
+
+        if (coinManager != null) {
+            coinManager.AddCoins(4);
+        }
 
         // Stop fire particles
         if (fireParticleSystem != null)

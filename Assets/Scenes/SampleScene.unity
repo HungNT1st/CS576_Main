@@ -7689,6 +7689,7 @@ MonoBehaviour:
   damageInterval: 0.5
   waterNeeded: 3
   treeDestructionTime: 20
+  coinManager: {fileID: 226640183}
   steamEffect: {fileID: 869819951}
 --- !u!114 &1441668247
 MonoBehaviour:
@@ -7709,7 +7710,6 @@ MonoBehaviour:
     prefab: {fileID: 1460632416638922788, guid: 4e5cfdbb79210084ba3def36800cfb1b, type: 3}
     spawnChance: 0.5
   spawnHeight: 2
-  spawnEffect: {fileID: 198137211002769400, guid: bbd1860d44f6c7546aad605f3666475f, type: 3}
 --- !u!1 &1484754952
 GameObject:
   m_ObjectHideFlags: 0
