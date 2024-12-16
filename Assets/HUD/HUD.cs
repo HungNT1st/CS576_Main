@@ -8,6 +8,9 @@ using UnityEngine.UI;
 
 public class HUD : Singleton<HUD>
 {
+    [SerializeField] RectTransform textPopUpRect;
+    [SerializeField] TextMeshProUGUI textPopUpTMP;
+    const int POPUP_DELTA_Y = 250;
     [Header("Health")]
     [SerializeField] Image environmentHealth;
     [SerializeField] Image playerHealth;
@@ -24,6 +27,7 @@ public class HUD : Singleton<HUD>
         StopSmallTaskLoading();
         winScreen.SetActive(false);
         loseScreen.SetActive(false);
+        textPopUpRect.DOMoveY(-POPUP_DELTA_Y, 0f);
     }
     private void Update() {
         if (Input.GetKeyDown(KeyCode.Escape)) {
@@ -37,6 +41,22 @@ public class HUD : Singleton<HUD>
         }
         
     }
+    bool isPoping = false;
+    public void PopUpText(string txt, float duration) {
+        if (isPoping) return;
+        isPoping = true;
+        textPopUpTMP.text = txt;
+        textPopUpRect.DOMoveY(POPUP_DELTA_Y, 0.5f).onComplete += () => {
+            StartCoroutine(wait());
+            IEnumerator wait()
+            {
+                yield return new WaitForSeconds(duration);
+                textPopUpRect.DOMoveY(-POPUP_DELTA_Y, 0.5f);
+                isPoping = false;
+            }
+        };
+    }
+    
     public void GameOver(bool isWin) {
         Time.timeScale = 0f;
         Cursor.lockState = CursorLockMode.None;

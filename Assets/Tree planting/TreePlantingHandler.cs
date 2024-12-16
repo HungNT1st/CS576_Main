@@ -61,12 +61,14 @@ public class TreePlantingHandler : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.T))
         {
-            if (coinManager != null && coinManager.GetCoins() >= 2) {
-                HUD.Instance.SetSmallTaskLoading("Planting", 4).onComplete += () => {
-                    SpawnTreeAtPlayerPosition();
-                    coinManager.RemoveCoins(2);
-                };
+            if (coinManager != null && coinManager.GetCoins() < 2) {
+                HUD.Instance.PopUpText("Not enough coin to plant tree", 2);
+                return;
             }
+            HUD.Instance.SetSmallTaskLoading("Planting", 4).onComplete += () => {
+                SpawnTreeAtPlayerPosition();
+                coinManager.RemoveCoins(2);
+            };
             
         }
         if (Input.GetKeyUp(KeyCode.T)) {
