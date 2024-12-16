@@ -338,7 +338,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -300}
+  m_AnchoredPosition: {x: 0, y: -395}
   m_SizeDelta: {x: 250, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &430208989
@@ -1399,7 +1399,9 @@ MonoBehaviour:
     up trash will increase the world health an give you coins.\n- Trees and pets
     can be spawned by coins, which significantly increase world health. \n- Stepping
     on fire or lose a \"fight\" will result in losing some of the player's health.
-    Be careful. \n- Now, let's begin your journey and save the forest. "
+    Be careful. \n- Collecting pills grants special effects: Blue (increase speed),
+    Yellow (decrease speed), Red (increase or decrease player health with 50% chance)\n-
+    Now, let's begin your journey and save the forest. "
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1dff8a78d454d38419368e7204d3740a, type: 2}
   m_sharedMaterial: {fileID: 4419428059345770823, guid: 1dff8a78d454d38419368e7204d3740a, type: 2}
