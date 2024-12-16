@@ -22,6 +22,8 @@
     - Created Coin Manager system in CoinManager.cs to handle coin collection through actions that are beneficial to the environment like capturing villains, putting down fire, and collecting trash in VillainBehavior, FireManager.cs and Trash.cs.
     - Implemented using coins collected to plant trees and spawn pets in TreePlantingHandler.cs and PetsAddingHandler.cs.
     - Contributed to writing player instruction in main menu.
+    - Contributed to debugging putting down fire and collecting trash.
+    - Contributed to debugging player attack villian.
 4. Tung Ngo
     - Created fire system: Implemented fire spawning mechanics and fire spread behavior across the terrain.
     - Developed fire extinguishing mechanics: Created water spray system and fire-water interaction logic.
