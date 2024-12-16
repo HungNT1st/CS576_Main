@@ -7534,7 +7534,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firePrefab: {fileID: 1632659334546840, guid: bbd1860d44f6c7546aad605f3666475f, type: 3}
   spawnInterval: 10
-  maxFiresAtOnce: 3
+  maxFiresAtOnce: 10
   initialFireCount: 5
   minSpawnRadius: 20
   maxSpawnRadius: 50
@@ -7558,6 +7558,10 @@ MonoBehaviour:
   treeDestructionTime: 20
   coinManager: {fileID: 0}
   steamEffect: {fileID: 869819951}
+  baseEmissionRate: 40
+  maxEmissionMultiplier: 2
+  baseDamageAmount: 10
+  maxDamageMultiplier: 2
 --- !u!114 &1441668247
 MonoBehaviour:
   m_ObjectHideFlags: 0

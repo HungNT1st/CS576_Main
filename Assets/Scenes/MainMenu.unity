@@ -1395,11 +1395,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "- Your goal is to save the forest from being destroyed (world health goes
-    to 0).\n- Put out fire, fight villians, pick up trash will increase the world
-    health an give you coins.\n- Trees and pets can be spawned by coins, which significantly
-    increase world health. \n- Stepping on fire or lose a \"fight\" will result in
-    losing some of the player's health. Be careful. \n- Now, let's begin your journey
-    and save the forest. "
+    to 0) and try to get world health to 100.\n- Put out fire, fight villians, pick
+    up trash will increase the world health an give you coins.\n- Trees and pets
+    can be spawned by coins, which significantly increase world health. \n- Stepping
+    on fire or lose a \"fight\" will result in losing some of the player's health.
+    Be careful. \n- Now, let's begin your journey and save the forest. "
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1dff8a78d454d38419368e7204d3740a, type: 2}
   m_sharedMaterial: {fileID: 4419428059345770823, guid: 1dff8a78d454d38419368e7204d3740a, type: 2}
