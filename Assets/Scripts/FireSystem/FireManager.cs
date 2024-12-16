@@ -15,6 +15,12 @@ public class FireManager : MonoBehaviour
     [Header("Effects")]
     [SerializeField] private ParticleSystem steamEffect;
     
+    [Header("Scaling Settings")]
+    [SerializeField] private float baseEmissionRate = 40f;
+    [SerializeField] private float maxEmissionMultiplier = 2f;
+    [SerializeField] private float baseDamageAmount = 10f;
+    [SerializeField] private float maxDamageMultiplier = 2f;
+    
     private bool isExtinguishing = false;
     private bool isExtinguished = false;
     private FirePillReward pillReward;
@@ -25,6 +31,9 @@ public class FireManager : MonoBehaviour
 
     private void Start()
     {
+        // Store base damage amount
+        baseDamageAmount = damageAmount;
+        
         // Get references
         if (fireParticleSystem == null)
         {
@@ -183,6 +192,33 @@ public class FireManager : MonoBehaviour
             
             // Destroy the fire object
             Destroy(gameObject);
+        }
+    }
+
+    private void UpdateFireIntensity()
+    {
+        if (gameManager == null || fireParticleSystem == null) return;
+        
+        // Get current world health percentage (0-1)
+        float worldHealthPercent = gameManager.GetWorldHealthPercentage();
+        
+        // Calculate multipliers based on world health
+        float emissionMultiplier = 1f + (worldHealthPercent * (maxEmissionMultiplier - 1f));
+        float damageMultiplier = 1f + (worldHealthPercent * (maxDamageMultiplier - 1f));
+        
+        // Update particle emission
+        var emission = fireParticleSystem.emission;
+        emission.rateOverTime = baseEmissionRate * emissionMultiplier;
+        
+        // Update damage amount
+        damageAmount = baseDamageAmount * damageMultiplier;
+    }
+
+    private void Update()
+    {
+        if (!isExtinguished)
+        {
+            UpdateFireIntensity();
         }
     }
 } 

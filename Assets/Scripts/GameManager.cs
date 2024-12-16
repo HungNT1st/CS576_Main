@@ -81,4 +81,9 @@ public class GameManager : Singleton<GameManager>
             cg.colorFilter.value = Color.Lerp(badColor, goodColor, (float)(currentWorldHealth / maxWorldHealth));
         }
     }
+
+    public float GetWorldHealthPercentage()
+    {
+        return currentWorldHealth / maxWorldHealth;
+    }
 }
