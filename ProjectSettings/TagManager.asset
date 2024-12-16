@@ -12,12 +12,12 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Fire
   - Water
   - UI
   - PostProcessing
   - Enemy
-  - 
+  - Ground
   - 
   - 
   - 

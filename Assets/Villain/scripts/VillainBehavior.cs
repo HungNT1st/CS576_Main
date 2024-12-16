@@ -10,6 +10,9 @@ public class VillainBehavior : MonoBehaviour
     [SerializeField] private float moveSpeed = 3f;
     [SerializeField] private int maxHealth = 5;
     [SerializeField] private float attackCooldown = 1f;
+    [SerializeField] private int coinsOnDeath = 3;
+    [SerializeField] private CoinManager coinManager;
+
     
     private Transform currentTargetTree;
     private int currentTreeHealth = 20;
@@ -155,6 +158,12 @@ public class VillainBehavior : MonoBehaviour
         }
     }
 
+    public void TakeAllDamage()
+    {
+        health = 0;
+        Die();
+    }
+
     private void Die()
     {
         isDead = true;
@@ -162,6 +171,14 @@ public class VillainBehavior : MonoBehaviour
         {
             animController.SetState(VillainAnimationController.States.Death);
         }
+
+        Debug.Log("Villain died");
+
+        if (coinManager != null)
+        {
+            coinManager.AddCoins(coinsOnDeath);
+        }
+        
         StartCoroutine(DeathSequence());
     }
 
