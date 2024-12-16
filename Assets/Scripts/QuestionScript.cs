@@ -241,7 +241,10 @@ public class QuestionMenuScript : MonoBehaviour
             headerLabel.text = "CORRECT";
             headerLabel.style.color = new StyleColor(Color.green);
 
-            if (villain != null) Destroy(villain);
+            if (villain != null) {
+                villain.GetComponent<VillainBehavior>().TakeAllDamage();
+                Destroy(villain);
+            }
 
             Debug.Log("Win a match, remove a villain");
 

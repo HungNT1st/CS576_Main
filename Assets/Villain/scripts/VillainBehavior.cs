@@ -158,6 +158,12 @@ public class VillainBehavior : MonoBehaviour
         }
     }
 
+    public void TakeAllDamage()
+    {
+        health = 0;
+        Die();
+    }
+
     private void Die()
     {
         isDead = true;
@@ -166,10 +172,11 @@ public class VillainBehavior : MonoBehaviour
             animController.SetState(VillainAnimationController.States.Death);
         }
 
+        Debug.Log("Villain died");
+
         if (coinManager != null)
         {
             coinManager.AddCoins(coinsOnDeath);
-            Debug.Log("Villain died and dropped " + coinsOnDeath + " coins");
         }
         
         StartCoroutine(DeathSequence());
