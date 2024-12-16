@@ -55,7 +55,7 @@ public class GameManager : Singleton<GameManager>
         if (currentPlayerHealth <= 0)
         {
             Debug.Log("The player has died!");
-            Time.timeScale = 0f;
+            HUD.Instance.GameOver(false);
         }
     }
 

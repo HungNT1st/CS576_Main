@@ -31,7 +31,7 @@ public class TreePlantingHandler : MonoBehaviour
         }
 
         AddTreeToTerrain(spawnPos);
-        GameManager.Instance.HealWorld(20);
+        GameManager.Instance.HealWorld(10);
     }
 
     private void AddTreeToTerrain(Vector3 position)
