@@ -7567,6 +7567,7 @@ GameObject:
   - component: {fileID: 1441668244}
   - component: {fileID: 1441668245}
   - component: {fileID: 1441668246}
+  - component: {fileID: 1441668247}
   m_Layer: 0
   m_Name: Handlers
   m_TagString: Untagged
@@ -7689,6 +7690,26 @@ MonoBehaviour:
   waterNeeded: 3
   treeDestructionTime: 20
   steamEffect: {fileID: 869819951}
+--- !u!114 &1441668247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1441668240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e710c7ef811f5fb4c823443b9f6edac4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  redPill:
+    prefab: {fileID: 7120382088629031720, guid: d15ff1e0b5163044faec84c42876f112, type: 3}
+    spawnChance: 0.5
+  bluePill:
+    prefab: {fileID: 1460632416638922788, guid: 4e5cfdbb79210084ba3def36800cfb1b, type: 3}
+    spawnChance: 0.5
+  spawnHeight: 2
+  spawnEffect: {fileID: 198137211002769400, guid: bbd1860d44f6c7546aad605f3666475f, type: 3}
 --- !u!1 &1484754952
 GameObject:
   m_ObjectHideFlags: 0
